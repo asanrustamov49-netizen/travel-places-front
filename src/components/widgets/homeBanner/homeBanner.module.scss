@@ -1,0 +1,228 @@
+.container {
+  position: relative;
+
+  width: 100%;
+  min-height: 647px;
+
+  background-image: url("/travel-banner.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #ffffff;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 12, 30, 0.58);
+}
+
+.mainContainer {
+  min-height: 645px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  margin-top: -15px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  backdrop-filter: blur(4px);
+}
+
+.content h1 {
+  margin: 28px 0 22px;
+
+  font-size: 72px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -2px;
+
+  color: #ffffff;
+
+  span {
+    display: block;
+
+    color: #7db7ff;
+  }
+}
+
+.content p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 21px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.searchBox {
+  width: 650px;
+  height: 66px;
+
+  margin-top: 46px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 6px;
+
+  background: #ffffff;
+
+  border-radius: 17px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.searchInput {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding-left: 18px;
+
+  color: #94a3b8;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #1e293b;
+
+    font-size: 17px;
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+}
+
+.button {
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 28px;
+
+  border-radius: 13px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-height: 600px;
+  }
+
+  .mainContainer {
+    min-height: 600px;
+  }
+
+  .content h1 {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+
+  .content p {
+    font-size: 17px;
+
+    br {
+      display: none;
+    }
+  }
+
+  .searchBox {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+
+    flex-direction: column;
+
+    padding: 8px;
+
+    gap: 8px;
+
+    border-radius: 16px;
+  }
+
+  .searchInput {
+    width: 100%;
+    height: 52px;
+    padding-left: 12px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 38px;
+  }
+
+  .badge {
+    font-size: 13px;
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+}

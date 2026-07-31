@@ -10,14 +10,21 @@ a {
 }
 
 body {
+  background: #f8fafc
 }
 
-h1 {}
-h2 {}
-h3 {}
-h4 {}
-h5 {}
-h6 {}
+h1 {
+}
+h2 {
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+}
 
 button {
   border: none;
@@ -31,7 +38,17 @@ input {
 
 .container {
   max-width: 1240px;
-  width: 100%; 
+  width: 100%;
   margin-inline: auto;
   padding: 0 20px;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  min-height: 100vh;
+  main {
+    flex: 1;
+  }
 }

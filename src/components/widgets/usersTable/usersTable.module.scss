@@ -1,0 +1,192 @@
+.wrapper {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: #f9fafb;
+
+    th {
+      text-align: left;
+      padding: 14px 24px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f1f3;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: #fafbff;
+      }
+    }
+
+    td {
+      padding: 14px 24px;
+      font-size: 14px;
+      color: #111827;
+      vertical-align: middle;
+    }
+  }
+}
+
+// --- User cell (avatar + name) ---
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2f4bff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 700;
+  color: #111827;
+}
+
+.email {
+  color: #6b7280;
+}
+
+.places {
+  font-weight: 700;
+  color: #2f4bff;
+}
+
+.joined {
+  color: #6b7280;
+}
+
+// --- Role badge ---
+
+.badge {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badgeAdmin {
+  background: #eef2ff;
+  color: #2f4bff;
+}
+
+.badgeUser {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+// --- Actions ---
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn,
+.deleteBtn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.editBtn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.deleteBtn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+// --- Footer / pagination ---
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.resultsInfo {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+}
+
+.pageArrow,
+.pageBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.pageBtnActive {
+  background: #2f4bff;
+  border-color: #2f4bff;
+  color: #fff;
+
+  &:hover {
+    background: #2f4bff;
+  }
+}

@@ -1,0 +1,142 @@
+.header {
+  height: 82px;
+  background: #fff;
+  border-bottom: 1px solid #eef2f7;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.wrapper {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+
+  h2 {
+    .span {
+      color: #1d4ed8;
+    }
+    color: #111827;
+    font-size: 28px;
+    font-weight: 700;
+  }
+}
+
+.logoIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  span {
+    font-size: 25px;
+    color: #fff;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 16px;
+
+    padding: 12px 20px;
+    border-radius: 14px;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+      background: #f3f4f6;
+      color: #2563eb;
+    }
+  }
+}
+
+.active {
+  background: #eff6ff;
+  color: #2563eb !important;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.signIn {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 12px;
+  transition: 0.25s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+.signUp {
+  text-decoration: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}
+
+.addBtn {
+  text-decoration: none;
+  background: #2563eb;
+  color: white;
+  padding: 13px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  border: 2px solid #e5e7eb;
+  transition: 0.25s;
+
+  img {
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: #2563eb;
+  }
+}
