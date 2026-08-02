@@ -1,0 +1,345 @@
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background: #ffffff;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.leftSide {
+  position: relative;
+  min-height: 100vh;
+
+  background-image: url("/register-bg.avif");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 50, 76, 0.38);
+}
+
+.leftContent {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  padding: 0 50px 60px;
+  color: white;
+
+  h2 {
+    max-width: 1050px;
+    margin: 0 0 25px;
+
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 18px;
+}
+
+.stat {
+  min-width: 155px;
+
+  padding: 11px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 2px 0 0;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.rightSide {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #ffffff;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 450px;
+  padding: 45px 40px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #101828;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+
+  span {
+    span {
+      color: #2563eb;
+    }
+  }
+}
+
+.logoIcon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 20px;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.heading {
+  margin-bottom: 30px;
+
+  h1 {
+    margin: 0 0 10px;
+
+    font-size: 31px;
+    line-height: 1.2;
+    font-weight: 700;
+
+    color: #101828;
+  }
+
+  p {
+    margin: 0;
+
+    font-size: 16px;
+    color: #667085;
+  }
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #101828;
+  }
+
+  input {
+    width: 100%;
+    height: 56px;
+
+    padding: 0 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d9dee7;
+    border-radius: 11px;
+
+    outline: none;
+
+    font-size: 15px;
+    color: #101828;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: #98a2b3;
+    }
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+.error {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit {
+  width: 100%;
+  height: 58px;
+
+  margin-top: 2px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    background: #1d4ed8;
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.loginText {
+  margin: 34px 0 0;
+
+  text-align: center;
+
+  font-size: 15px;
+  color: #667085;
+
+  a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+  margin: 23px auto 0;
+
+  max-width: 390px;
+
+  text-align: center;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #98a2b3;
+
+  a {
+    color: #667085;
+    text-decoration: underline;
+
+    &:hover {
+      color: #2563eb;
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSide {
+    display: none;
+  }
+
+  .rightSide {
+    min-height: 100vh;
+  }
+
+  .formWrapper {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .formWrapper {
+    padding: 35px 22px;
+  }
+
+  .logo {
+    margin-bottom: 45px;
+  }
+
+  .heading {
+    margin-bottom: 35px;
+
+    h1 {
+      font-size: 27px;
+    }
+  }
+}

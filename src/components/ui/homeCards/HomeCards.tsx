@@ -2,20 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Star } from "lucide-react";
 import scss from "./homeCards.module.scss";
-
-interface Place {
-  id: number;
-  image: string;
-  type: string;
-  rating: number;
-  title: string;
-  location: string;
-  description: string;
-  price: number;
-}
+import { IPlaceResult } from "@/hooks/types/placesTypes";
 
 interface HomeCardsProps {
-  place: Place;
+  place: IPlaceResult;
 }
 
 const HomeCards = ({ place }: HomeCardsProps) => {
@@ -49,12 +39,12 @@ const HomeCards = ({ place }: HomeCardsProps) => {
 
         <div className={scss.location}>
           <MapPin size={14} />
-          <span>{place.location}</span>
+          <span>{place.country_id}</span>
         </div>
 
         <p>{place.description}</p>
 
-        <Link href={`/places/${place.id}`} className={scss.button}>
+        <Link href={`/detail/${place.id}`} className={scss.button}>
           View Details
         </Link>
       </div>

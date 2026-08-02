@@ -1,83 +1,100 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { MapPin, Star, ChevronLeft, ChevronRight } from "lucide-react";
+
 import { useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import scss from "./homeDestinations.module.scss";
 import HomeCards from "@/components/ui/homeCards/HomeCards";
+import { IPlaceResult } from "@/hooks/types/placesTypes";
 
-const places = [
+const TEMP_PLACES: IPlaceResult[] = [
   {
-    id: 1,
-    image: "/images/amalfi.jpg",
-    type: "Beach",
-    rating: 4.9,
+    id: "1",
     title: "Amalfi Coast Escape",
-    location: "Amalfi, Italy",
+    image: "/images/amalfi.jpg",
+    country_id: "Amalfi, Italy",
+    type: "Beach",
+    price: 320,
+    rating: 4.9,
     description:
       "Dramatic cliffs, pastel villages, and the bluest sea on the Italian Riviera.",
-    price: 320,
-    createdAt: 8,
   },
   {
-    id: 2,
-    image: "/images/kyoto.jpg",
-    type: "Culture",
-    rating: 4.8,
+    id: "2",
     title: "Kyoto Temple Walk",
-    location: "Kyoto, Japan",
+    image: "/travel-banner.avif",
+    country_id: "Kyoto, Japan",
+    type: "Culture",
+    price: 180,
+    rating: 4.8,
     description:
       "Ancient temples, bamboo groves, and timeless Japanese culture.",
-    price: 180,
-    createdAt: 7,
   },
   {
-    id: 3,
-    image: "/images/santorini.jpg",
-    type: "Beach",
-    rating: 4.9,
+    id: "3",
     title: "Santorini Sunset",
-    location: "Oia, Greece",
-    description:
-      "White-washed villages, blue domes, and legendary caldera sunsets.",
+    image: "/register-bg.avif",
+    country_id: "Oia, Greece",
+    type: "Beach",
     price: 410,
-    createdAt: 6,
+    rating: 4.9,
+    description:
+      "White-washed villages, blue domes, and legendary Caldera sunsets.",
   },
   {
-    id: 4,
-    image: "/images/patagonia.jpg",
-    type: "Adventure",
-    rating: 4.7,
+    id: "4",
     title: "Patagonia Trek",
-    location: "El Chalten, Argentina",
+    image: "/login-bg.avif",
+    country_id: "El Chaltén, Argentina",
+    type: "Adventure",
+    price: 250,
+    rating: 4.7,
     description:
       "Jagged peaks, turquoise lakes, and wild Patagonian wilderness.",
-    price: 250,
-    createdAt: 5,
   },
   {
-    id: 5,
-    image: "/images/marrakech.jpg",
-    type: "Culture",
-    rating: 4.6,
+    id: "5",
     title: "Marrakech Medina",
-    location: "Marrakech, Morocco",
+    image: "/mortgage.avif",
+    country_id: "Marrakech, Morocco",
+    type: "Culture",
+    price: 140,
+    rating: 4.6,
     description:
       "Labyrinthine souks, ornate riads, and the vibrant pulse of North Africa.",
-    price: 140,
-    createdAt: 4,
   },
   {
-    id: 6,
-    image: "/images/banff.jpg",
-    type: "Nature",
-    rating: 4.8,
+    id: "6",
     title: "Banff National Park",
-    location: "Banff, Canada",
+    image: "/images/banff.jpg",
+    country_id: "Banff, Canada",
+    type: "Nature",
+    price: 195,
+    rating: 4.8,
     description:
       "Turquoise glacial lakes framed by the towering Canadian Rockies.",
-    price: 195,
-    createdAt: 3,
+  },
+  {
+    id: "7",
+    title: "New York City Escape",
+    image: "/images/new-york.jpg",
+    country_id: "New York, USA",
+    type: "City",
+    price: 290,
+    rating: 4.7,
+    description:
+      "Skyscrapers, iconic streets, endless entertainment, and city lights.",
+  },
+  {
+    id: "8",
+    title: "Bali Tropical Escape",
+    image: "/images/bali.jpg",
+    country_id: "Bali, Indonesia",
+    type: "Nature",
+    price: 220,
+    rating: 4.8,
+    description:
+      "Tropical beaches, green rice terraces, waterfalls, and peaceful temples.",
   },
 ];
 
@@ -89,12 +106,14 @@ const HomeDestinations = () => {
   const [page, setPage] = useState(1);
 
   const filteredPlaces = useMemo(() => {
-    let result = [...places];
+    let result = [...TEMP_PLACES];
 
+    // Фильтр по категории
     if (category !== "All") {
       result = result.filter((place) => place.type === category);
     }
 
+    // Сортировка
     switch (sort) {
       case "price-low":
         result.sort((a, b) => a.price - b.price);
@@ -114,16 +133,18 @@ const HomeDestinations = () => {
 
       case "newest":
       default:
-        result.sort((a, b) => b.createdAt - a.createdAt);
+        // Пока оставляем исходный порядок.
+        break;
     }
 
     return result;
   }, [category, sort]);
 
   return (
-    <section className={scss.container}>
+    <section id="destinations" className={scss.container}>
       <div className="container">
         <div className={scss.mainContainer}>
+          {/* TOP */}
           <div className={scss.top}>
             <div className={scss.heading}>
               <h2>
@@ -132,6 +153,7 @@ const HomeDestinations = () => {
             </div>
 
             <div className={scss.controls}>
+              {/* CATEGORIES */}
               <div className={scss.categories}>
                 {categories.map((item) => (
                   <button
@@ -147,6 +169,7 @@ const HomeDestinations = () => {
                 ))}
               </div>
 
+              {/* SORT */}
               <select
                 value={sort}
                 onChange={(e) => {
@@ -156,38 +179,62 @@ const HomeDestinations = () => {
                 className={scss.sort}
               >
                 <option value="newest">Newest</option>
+
                 <option value="price-low">Price: Low → High</option>
+
                 <option value="price-high">Price: High → Low</option>
+
                 <option value="rating">Highest Rated</option>
+
                 <option value="alphabetical">A → Z</option>
               </select>
             </div>
           </div>
 
-          <div className={scss.grid}>
-            {filteredPlaces.map((place) => (
-              <HomeCards key={place.id} place={place} />
-            ))}
-          </div>
-
-          {filteredPlaces.length === 0 && (
+          {/* CARDS */}
+          {filteredPlaces.length > 0 ? (
+            <div className={scss.grid}>
+              {filteredPlaces.map((place) => (
+                <HomeCards key={place.id} place={place} />
+              ))}
+            </div>
+          ) : (
             <div className={scss.empty}>
               <h3>No destinations found</h3>
+
               <p>Try another category.</p>
             </div>
           )}
 
+          {/* PAGINATION */}
           <div className={scss.pagination}>
-            <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-              <ChevronLeft size={16} />
+            <button
+              className={scss.pageArrow}
+              disabled={page === 1}
+              onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+            >
+              <ChevronLeft size={15} />
             </button>
 
-            <button className={scss.current}>1</button>
+            <button
+              className={page === 1 ? scss.pageBtnActive : scss.pageBtn}
+              onClick={() => setPage(1)}
+            >
+              1
+            </button>
 
-            <button onClick={() => setPage(2)}>2</button>
+            <button
+              className={page === 2 ? scss.pageBtnActive : scss.pageBtn}
+              onClick={() => setPage(2)}
+            >
+              2
+            </button>
 
-            <button onClick={() => setPage(page + 1)}>
-              <ChevronRight size={16} />
+            <button
+              className={scss.pageArrow}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              <ChevronRight size={15} />
             </button>
           </div>
         </div>

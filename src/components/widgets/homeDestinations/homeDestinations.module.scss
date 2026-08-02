@@ -300,44 +300,62 @@
 
   margin-top: 30px;
 
-  button {
-    width: 27px;
-    height: 27px;
-
+  .pageArrow,
+  .pageBtn {
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-
-    background: #ffffff;
-
-    color: #64748b;
-
-    font-size: 11px;
-
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
     cursor: pointer;
+    transition: background 0.15s ease;
 
-    transition:
-      background 0.2s ease,
-      color 0.2s ease;
-
-    &:hover:not(:disabled) {
-      background: #eff6ff;
-      color: #2563eb;
+    &:hover {
+      background: #f9fafb;
     }
 
     &:disabled {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
     }
   }
 
-  .current {
-    background: #2563eb;
-    border-color: #2563eb;
-    color: #ffffff;
+  .pageBtnActive {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: #f9fafb;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    background: #2f4bff;
+    border-color: #2f4bff;
+    color: #fff;
+
+    &:hover {
+      background: #2f4bff;
+    }
   }
 }
 

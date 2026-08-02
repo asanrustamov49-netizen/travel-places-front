@@ -13,12 +13,10 @@ const Footer = () => {
                 <span className={scss.logoIcon}>
                   <IoLocationSharp />
                 </span>
-
                 <h2>
                   Travel<span>Places</span>
                 </h2>
               </Link>
-
               <p>
                 Discover and share the world's most
                 <br />
@@ -30,8 +28,8 @@ const Footer = () => {
               <div className={scss.column}>
                 <h3>EXPLORE</h3>
 
-                <Link href="/">Browse Places</Link>
-                <Link href="/create">Add a Place</Link>
+                <Link href="/#browse">Browse Places</Link>
+                <Link href="/add">Add a Place</Link>
               </div>
 
               <div className={scss.column}>
@@ -44,7 +42,6 @@ const Footer = () => {
 
               <div className={scss.column}>
                 <h3>ADMIN</h3>
-
                 <Link href="/admin">Dashboard</Link>
               </div>
             </div>

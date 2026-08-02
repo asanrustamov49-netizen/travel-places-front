@@ -34,7 +34,7 @@ const Add = () => {
   };
 
   return (
-    <div className={scss.container}>
+    <div id="add" className={scss.container}>
       <div className="container">
         <div className={scss.mainContainer}>
           <button

@@ -35,7 +35,7 @@ const stats = [
 
 const AdminDashboard = () => {
   return (
-    <section className={scss.container}>
+    <section id="admin" className={scss.container}>
       <div className="container">
         <div className={scss.mainContainer}>
           <div className={scss.heading}>

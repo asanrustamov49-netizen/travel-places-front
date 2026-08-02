@@ -34,7 +34,7 @@ const HomeBanner = () => {
                   />
                 </div>
 
-                <Link href="/places" className={scss.button}>
+                <Link id="browse" href="#destinations" className={scss.button}>
                   Browse Places
                 </Link>
               </div>
