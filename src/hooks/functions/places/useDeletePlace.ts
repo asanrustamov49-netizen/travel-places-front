@@ -1,6 +1,6 @@
+"use client"
+import { placeApi } from "@/hooks/api/placesApi";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import { placeApi } from "../api/placesApi";
-import { IOnePlaceResponse } from "../types/placesTypes";
 
 export const useDeletePlace = () => {
   const queryClient = new QueryClient();

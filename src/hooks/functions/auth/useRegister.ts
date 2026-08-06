@@ -1,6 +1,7 @@
+"use client";
+import { authApi } from "@/hooks/api/authApi";
+import { IRegisterBody } from "@/hooks/types/authTypes";
 import { useMutation } from "@tanstack/react-query";
-import { authApi } from "../api/authApi";
-import { IRegisterBody } from "../types/authTypes";
 
 export const useRegister = () =>
   useMutation({
@@ -8,5 +9,9 @@ export const useRegister = () =>
     mutationFn: async (body: IRegisterBody) => {
       const response = await authApi.post("/register", body);
       return response.data;
+    },
+    onSuccess: (res) => {
+      console.log(res);
+      window.location.href = "/login";
     },
   });

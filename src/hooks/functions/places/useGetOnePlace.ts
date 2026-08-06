@@ -1,6 +1,7 @@
+"use client"
+import { placeApi } from "@/hooks/api/placesApi";
+import { IOnePlaceResponse } from "@/hooks/types/placesTypes";
 import { useQuery } from "@tanstack/react-query";
-import { placeApi } from "../api/placesApi";
-import { IOnePlaceResponse } from "../types/placesTypes";
 
 export const useGetOnePlace = (id: number) =>
   useQuery({

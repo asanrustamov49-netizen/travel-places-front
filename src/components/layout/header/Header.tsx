@@ -4,6 +4,7 @@ import Image from "next/image";
 import scss from "./header.module.scss";
 import { IoLocationSharp } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import UserAvatar from "@/components/ui/userAvatar/UserAvatar";
 
 const isAuth = false; // заменить потом на токен
 
@@ -45,12 +46,7 @@ const Header = () => {
                 </Link>
 
                 <Link href="/profile" className={scss.avatar}>
-                  <Image
-                    src="/avatar.jpg"
-                    alt="avatar"
-                    width={44}
-                    height={44}
-                  />
+                  {/* <UserAvatar name={user.name} size="small" /> */}
                 </Link>
               </>
             ) : (

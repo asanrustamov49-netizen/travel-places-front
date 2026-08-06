@@ -1,6 +1,7 @@
+"use client"
+import { authApi } from "@/hooks/api/authApi";
+import { IProfileResponse } from "@/hooks/types/authTypes";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { authApi } from "../api/authApi";
-import { IProfileResponse, IRegisterBody } from "../types/authTypes";
 
 export const useProfile = () =>
   useQuery({

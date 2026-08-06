@@ -1,6 +1,7 @@
+"use client"
+import { placeApi } from "@/hooks/api/placesApi";
+import { IPlaceNewBody } from "@/hooks/types/placesTypes";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { placeApi } from "../api/placesApi";
-import { IOnePlaceResponse, IPlaceNewBody } from "../types/placesTypes";
 
 export const useUpdatePlace = () =>
   useMutation({

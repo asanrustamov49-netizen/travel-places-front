@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import scss from "./homeDestinations.module.scss";
 import HomeCards from "@/components/ui/homeCards/HomeCards";
 import { IPlaceResult } from "@/hooks/types/placesTypes";
+import { useGetPlaces } from "@/hooks/places/useGetPlaces";
 
 const TEMP_PLACES: IPlaceResult[] = [
   {
@@ -101,6 +102,7 @@ const TEMP_PLACES: IPlaceResult[] = [
 const categories = ["All", "Beach", "Culture", "Adventure", "Nature", "City"];
 
 const HomeDestinations = () => {
+  // const {data: places} = useGetPlaces()
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("newest");
   const [page, setPage] = useState(1);

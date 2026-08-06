@@ -1,20 +1,27 @@
 "use client";
-
 import { useRef, useState } from "react";
 import scss from "./add.module.scss";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { ICreatePlaceBody } from "@/hooks/types/placesTypes";
+import { useCreatePlace } from "@/hooks/functions/places/useCreatePlace";
+import { PlaceSchema, placeSchema } from "@/validation/places.validate";
 
 const CATEGORIES = ["Beach", "Culture", "Adventure", "Mountain", "City"];
 
 const Add = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { push } = useRouter();
-  const [title, setTitle] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState(CATEGORIES[0]);
-  const [description, setDescription] = useState("");
+  const { mutate: createPlace } = useCreatePlace();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm<PlaceSchema>({
+    resolver: zodResolver(placeSchema),
+  });
   const [photos, setPhotos] = useState<File[]>([]);
 
   const handleFilesSelect = (files: FileList | null) => {
@@ -22,15 +29,23 @@ const Add = () => {
     setPhotos((prev) => [...prev, ...Array.from(files)]);
   };
 
+  const handleData = (data: PlaceSchema) => {
+    createPlace({
+      title,
+      description,
+      city,
+      type,
+      price,
+      country_id,
+      user_id,
+      images: photos,
+    });
+    reset();
+  };
+
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     handleFilesSelect(e.dataTransfer.files);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // тут будет запрос на сервер
-    console.log({ title, country, city, price, category, description, photos });
   };
 
   return (
@@ -50,8 +65,7 @@ const Add = () => {
             Share a beautiful destination with the community.
           </p>
 
-          <form onSubmit={handleSubmit} className={scss.form}>
-            {/* --- Basic Information --- */}
+          <form onSubmit={handleSubmit(handleData)} className={scss.form}>
             <section className={scss.card}>
               <h2 className={scss.cardTitle}>Basic Information</h2>
 
@@ -60,10 +74,9 @@ const Add = () => {
                   Title <span className={scss.required}>*</span>
                 </label>
                 <input
+                  {...register("title")}
                   type="text"
                   placeholder="e.g. Amalfi Coast Escape"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
                   className={scss.input}
                 />
               </div>
@@ -74,10 +87,8 @@ const Add = () => {
                     Country <span className={scss.required}>*</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="e.g. Italy"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
+                    {...register("country_id")}
+                    type="number"
                     className={scss.input}
                   />
                 </div>
@@ -87,10 +98,8 @@ const Add = () => {
                     City <span className={scss.required}>*</span>
                   </label>
                   <input
+                    {...register("city")}
                     type="text"
-                    placeholder="e.g. Amalfi"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
                     className={scss.input}
                   />
                 </div>
@@ -103,10 +112,10 @@ const Add = () => {
                     <span className={scss.required}>*</span>
                   </label>
                   <input
+                    {...register("price", {
+                      valueAsNumber: true,
+                    })}
                     type="number"
-                    placeholder="e.g. 320"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
                     className={scss.input}
                   />
                 </div>
@@ -115,15 +124,9 @@ const Add = () => {
                   <label className={scss.label}>
                     Category <span className={scss.required}>*</span>
                   </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className={scss.select}
-                  >
+                  <select {...register("type")} className={scss.select}>
                     {CATEGORIES.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
-                      </option>
+                      <option key={cat}>{cat}</option>
                     ))}
                   </select>
                 </div>
@@ -139,11 +142,8 @@ const Add = () => {
                   Description <span className={scss.required}>*</span>
                 </label>
                 <textarea
-                  placeholder="Describe this destination in detail..."
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  {...register("description")}
                   className={scss.textarea}
-                  rows={5}
                 />
               </div>
             </section>

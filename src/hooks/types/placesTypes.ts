@@ -13,14 +13,14 @@ export interface IOnePlaceResponse {
 }
 
 export interface ICreatePlaceBody {
+  user_id: number;
   country_id: number;
   title: string;
   description: string;
   city: string;
-  type: PlaceType;
+  type: "Beach" | "Culture" | "Adventure" | "Nature" | "City";
   price: number;
-  rating?: number;
-  best_season?: string;
+  images: string[];
 }
 
 export interface IPlaceFilters {
@@ -47,7 +47,6 @@ export interface IPlaceResult {
   type: PlaceType;
   price: number;
   rating: number | null;
-  best_season: string | null;
   image: IPlaceImage;
   created_at: string;
   updated_at: string;
@@ -58,4 +57,15 @@ export interface IPlaceImage {
   place_id: number;
   image_url: string;
   created_at: string;
+}
+
+export interface IGetPlacesParams {
+  type?: string;
+  country_id?: number;
+  price_min?: number;
+  price_max?: number;
+  search?: string;
+  sort?: string;
+  page?: number;
+  limit?: number;
 }
