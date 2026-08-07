@@ -1,168 +1,47 @@
 "use client";
-
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import scss from "./homeDestinations.module.scss";
 import HomeCards from "@/components/ui/homeCards/HomeCards";
-import { IPlaceResult } from "@/hooks/types/placesTypes";
-import { useGetPlaces } from "@/hooks/places/useGetPlaces";
+import { useGetPlaces } from "@/hooks/functions/places/useGetPlaces";
+import { TSort, TypeSort } from "@/hooks/types/placesTypes";
 
-const TEMP_PLACES: IPlaceResult[] = [
-  {
-    id: "1",
-    title: "Amalfi Coast Escape",
-    image: "/images/amalfi.jpg",
-    country_id: "Amalfi, Italy",
-    type: "Beach",
-    price: 320,
-    rating: 4.9,
-    description:
-      "Dramatic cliffs, pastel villages, and the bluest sea on the Italian Riviera.",
-  },
-  {
-    id: "2",
-    title: "Kyoto Temple Walk",
-    image: "/travel-banner.avif",
-    country_id: "Kyoto, Japan",
-    type: "Culture",
-    price: 180,
-    rating: 4.8,
-    description:
-      "Ancient temples, bamboo groves, and timeless Japanese culture.",
-  },
-  {
-    id: "3",
-    title: "Santorini Sunset",
-    image: "/register-bg.avif",
-    country_id: "Oia, Greece",
-    type: "Beach",
-    price: 410,
-    rating: 4.9,
-    description:
-      "White-washed villages, blue domes, and legendary Caldera sunsets.",
-  },
-  {
-    id: "4",
-    title: "Patagonia Trek",
-    image: "/login-bg.avif",
-    country_id: "El Chaltén, Argentina",
-    type: "Adventure",
-    price: 250,
-    rating: 4.7,
-    description:
-      "Jagged peaks, turquoise lakes, and wild Patagonian wilderness.",
-  },
-  {
-    id: "5",
-    title: "Marrakech Medina",
-    image: "/mortgage.avif",
-    country_id: "Marrakech, Morocco",
-    type: "Culture",
-    price: 140,
-    rating: 4.6,
-    description:
-      "Labyrinthine souks, ornate riads, and the vibrant pulse of North Africa.",
-  },
-  {
-    id: "6",
-    title: "Banff National Park",
-    image: "/images/banff.jpg",
-    country_id: "Banff, Canada",
-    type: "Nature",
-    price: 195,
-    rating: 4.8,
-    description:
-      "Turquoise glacial lakes framed by the towering Canadian Rockies.",
-  },
-  {
-    id: "7",
-    title: "New York City Escape",
-    image: "/images/new-york.jpg",
-    country_id: "New York, USA",
-    type: "City",
-    price: 290,
-    rating: 4.7,
-    description:
-      "Skyscrapers, iconic streets, endless entertainment, and city lights.",
-  },
-  {
-    id: "8",
-    title: "Bali Tropical Escape",
-    image: "/images/bali.jpg",
-    country_id: "Bali, Indonesia",
-    type: "Nature",
-    price: 220,
-    rating: 4.8,
-    description:
-      "Tropical beaches, green rice terraces, waterfalls, and peaceful temples.",
-  },
-];
-
-const categories = ["All", "Beach", "Culture", "Adventure", "Nature", "City"];
+const types = ["All", "Beach", "Culture", "Adventure", "Nature", "City"];
 
 const HomeDestinations = () => {
-  // const {data: places} = useGetPlaces()
-  const [category, setCategory] = useState("All");
-  const [sort, setSort] = useState("newest");
-  const [page, setPage] = useState(1);
-
-  const filteredPlaces = useMemo(() => {
-    let result = [...TEMP_PLACES];
-
-    // Фильтр по категории
-    if (category !== "All") {
-      result = result.filter((place) => place.type === category);
-    }
-
-    // Сортировка
-    switch (sort) {
-      case "price-low":
-        result.sort((a, b) => a.price - b.price);
-        break;
-
-      case "price-high":
-        result.sort((a, b) => b.price - a.price);
-        break;
-
-      case "rating":
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-
-      case "alphabetical":
-        result.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-
-      case "newest":
-      default:
-        // Пока оставляем исходный порядок.
-        break;
-    }
-
-    return result;
-  }, [category, sort]);
+  const [type, setType] = useState<TypeSort>("All");
+  const limit = 6;
+  const [search, setSearch] = useState<string>("");
+  const [sort, setSort] = useState<TSort>("newest");
+  const [page, setPage] = useState<number>(1);
+  const { data } = useGetPlaces({
+    page,
+    limit,
+    type: type === "All" ? undefined : type,
+    sort,
+    search,
+  });
+  const places = data?.data ?? [];
+  const totalPages = data?.pagination.pages ?? 1;
 
   return (
     <section id="destinations" className={scss.container}>
       <div className="container">
         <div className={scss.mainContainer}>
-          {/* TOP */}
           <div className={scss.top}>
             <div className={scss.heading}>
               <h2>
-                All Destinations <span>({filteredPlaces.length})</span>
+                All Destinations <span>({places.length})</span>
               </h2>
             </div>
-
             <div className={scss.controls}>
-              {/* CATEGORIES */}
               <div className={scss.categories}>
-                {categories.map((item) => (
+                {types.map((item) => (
                   <button
                     key={item}
-                    className={category === item ? scss.active : ""}
+                    className={type === item ? scss.active : ""}
                     onClick={() => {
-                      setCategory(item);
+                      setType(item);
                       setPage(1);
                     }}
                   >
@@ -170,70 +49,80 @@ const HomeDestinations = () => {
                   </button>
                 ))}
               </div>
-
-              {/* SORT */}
+              <div className={scss.searchWrapper}>
+                <svg
+                  className={scss.searchIcon}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search destinations..."
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
+                  className={scss.searchInput}
+                />
+              </div>
               <select
                 value={sort}
                 onChange={(e) => {
-                  setSort(e.target.value);
+                  setSort(e.target.value as TSort);
                   setPage(1);
                 }}
                 className={scss.sort}
               >
                 <option value="newest">Newest</option>
-
                 <option value="price-low">Price: Low → High</option>
-
                 <option value="price-high">Price: High → Low</option>
-
                 <option value="rating">Highest Rated</option>
-
                 <option value="alphabetical">A → Z</option>
               </select>
             </div>
           </div>
-
-          {/* CARDS */}
-          {filteredPlaces.length > 0 ? (
+          {places.length > 0 ? (
             <div className={scss.grid}>
-              {filteredPlaces.map((place) => (
+              {places.map((place) => (
                 <HomeCards key={place.id} place={place} />
               ))}
             </div>
           ) : (
             <div className={scss.empty}>
               <h3>No destinations found</h3>
-
               <p>Try another category.</p>
             </div>
           )}
-
-          {/* PAGINATION */}
           <div className={scss.pagination}>
             <button
               className={scss.pageArrow}
               disabled={page === 1}
-              onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+              onClick={() => setPage((prev) => prev - 1)}
             >
               <ChevronLeft size={15} />
             </button>
-
-            <button
-              className={page === 1 ? scss.pageBtnActive : scss.pageBtn}
-              onClick={() => setPage(1)}
-            >
-              1
-            </button>
-
-            <button
-              className={page === 2 ? scss.pageBtnActive : scss.pageBtn}
-              onClick={() => setPage(2)}
-            >
-              2
-            </button>
-
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={
+                  page === index + 1 ? scss.pageBtnActive : scss.pageBtn
+                }
+                onClick={() => setPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
             <button
               className={scss.pageArrow}
+              disabled={page === totalPages}
               onClick={() => setPage((prev) => prev + 1)}
             >
               <ChevronRight size={15} />

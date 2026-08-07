@@ -18,10 +18,29 @@ export interface IOneUserResponse {
   data: IUserResult;
 }
 
+export interface IGetUsersParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+}
+
 export interface IUserResult {
   id: number;
   name: string;
   email: string;
-  created_at: number;
-  updated_at: number;
+  role: "Admin" | "User";
+  places_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IUsersResponse {
+  message: string;
+  data: IUserResult[];
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+    pages: number;
+  };
 }

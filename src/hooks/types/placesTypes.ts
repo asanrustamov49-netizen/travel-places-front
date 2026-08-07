@@ -5,6 +5,12 @@ export interface IPlaceNewBody {
 export interface IPlaceResponse {
   message: string;
   data: IPlaceResult[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+  };
 }
 
 export interface IOnePlaceResponse {
@@ -13,14 +19,13 @@ export interface IOnePlaceResponse {
 }
 
 export interface ICreatePlaceBody {
-  user_id: number;
   country_id: number;
   title: string;
   description: string;
   city: string;
   type: "Beach" | "Culture" | "Adventure" | "Nature" | "City";
   price: number;
-  images: string[];
+  images: File[];
 }
 
 export interface IPlaceFilters {
@@ -39,17 +44,19 @@ export type PlaceType = "Beach" | "Culture" | "Adventure" | "Nature" | "City";
 
 export interface IPlaceResult {
   id: number;
-  user_id: number;
-  country_id: number;
   title: string;
   description: string;
   city: string;
-  type: PlaceType;
+  type: "Beach" | "Culture" | "Adventure" | "Nature" | "City";
   price: number;
-  rating: number | null;
-  image: IPlaceImage;
+  rating: number;
   created_at: string;
-  updated_at: string;
+  user_id: number;
+  author_name: string;
+  author_avatar?: string;
+  country_id: number;
+  country_name: string;
+  image: IPlaceImage
 }
 
 export interface IPlaceImage {
@@ -59,13 +66,25 @@ export interface IPlaceImage {
   created_at: string;
 }
 
+export type TSort =
+  | "newest"
+  | "price-low"
+  | "price-high"
+  | "rating"
+  | "alphabetical";
+
+export type TypeSort =
+  | "All"
+  | "Beach"
+  | "Culture"
+  | "Adventure"
+  | "Nature"
+  | "City";
+
 export interface IGetPlacesParams {
-  type?: string;
-  country_id?: number;
-  price_min?: number;
-  price_max?: number;
-  search?: string;
-  sort?: string;
   page?: number;
   limit?: number;
+  search?: string;
+  type?: TypeSort;
+  sort?: TSort;
 }

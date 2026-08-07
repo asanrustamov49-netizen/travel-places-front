@@ -1,13 +1,15 @@
 "use client";
 import { userApi } from "@/hooks/api/userApi";
-import { IUserResponse } from "@/hooks/types/userTypes";
+import { IGetUsersParams, IUserResponse, IUsersResponse } from "@/hooks/types/userTypes";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetUsers = () =>
+export const useGetUsers = (params: IGetUsersParams) =>
   useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", params],
     queryFn: async () => {
-      const response = await userApi.get<IUserResponse>("");
-      return response.data.data;
+      const response = await userApi.get<IUsersResponse>("", {
+        params,
+      });
+      return response.data;
     },
   });

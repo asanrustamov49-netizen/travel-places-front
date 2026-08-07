@@ -10,6 +10,6 @@ export const useGetPlaces = (params: IGetPlacesParams) =>
       const response = await placeApi.get<IPlaceResponse>("", {
         params,
       });
-      return response.data.data;
+      return response.data;
     },
   });
