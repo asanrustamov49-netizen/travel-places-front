@@ -40,10 +40,8 @@ const MoreDestinations = () => {
         <div className={scss.mainContainer}>
           <div className={scss.header}>
             <h2>More Destinations</h2>
-
             <Link href="/#destinations">View all</Link>
           </div>
-
           <DetailCards />
         </div>
       </div>

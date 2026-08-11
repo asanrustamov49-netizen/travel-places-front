@@ -1,82 +1,84 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import scss from "./detailTop.module.scss";
 import { IPlaceResult } from "@/hooks/types/placesTypes";
+import { useWishList } from "@/hooks/functions/useWishList";
 
 interface IDetailTop {
-  place: IPlaceResult
+  place: IPlaceResult;
 }
 
-const DetailTop = ({place}: IDetailTop) => {
+const DetailTop = ({ place }: IDetailTop) => {
+  const [showModal, setShowModal] = useState(false);
+  const { addToWishList, wishList } = useWishList();
+  const isSaved = wishList.some((item) => item.id === place.id);
+  const handleWishlist = () => {
+    if (isSaved) return;
+    addToWishList(place);
+    setShowModal(true);
+  };
+
   return (
     <section className={scss.container}>
       <div className="container">
-        {/* Breadcrumbs */}
         <div className={scss.breadcrumbs}>
           <Link href="/">Home</Link>
           <span>›</span>
-          <span>Kyoto Temple Walk</span>
+          <span>{place.title}</span>
         </div>
 
         <div className={scss.mainContainer}>
-          {/* LEFT */}
           <div className={scss.leftSide}>
-            {/* Main image */}
             <div className={scss.mainImage}>
-              <img src="/travel-banner.avif" alt="Kyoto Temple Walk" />
+              <img
+                src={place.image || "/travel-banner.avif"}
+                alt={place.title}
+              />
             </div>
 
-            {/* Gallery */}
             <div className={scss.gallery}>
-              <button>
-                <img src="/travel-banner.avif" alt="Kyoto" />
+              <button type="button">
+                <img
+                  src={place.image || "/travel-banner.avif"}
+                  alt={place.title}
+                />
               </button>
 
-              <button>
-                <img src="/login-bg.avif" alt="Kyoto" />
+              <button type="button">
+                <img src="/login-bg.avif" alt={place.title} />
               </button>
 
-              <button>
-                <img src="/mortgage.avif" alt="Kyoto Temple" />
+              <button type="button">
+                <img src="/mortgage.avif" alt={place.title} />
               </button>
 
-              <button>
-                <img src="/register-bg.avif" alt="Kyoto" />
+              <button type="button">
+                <img src="/register-bg.avif" alt={place.title} />
               </button>
             </div>
 
-            {/* About */}
             <div className={scss.about}>
               <h2>About this destination</h2>
 
-              <p>
-                Kyoto is Japan&apos;s cultural soul — a city where ancient
-                wooden temples sit beside bamboo groves, where geisha still
-                glide through cobblestone lanes at dusk, and where every season
-                transforms the landscape into something new.
-              </p>
-
-              <p>
-                Walk the famous Philosopher&apos;s Path in spring when cherry
-                blossoms form a canopy overhead, or visit Fushimi Inari for a
-                meditative hike through thousands of vermilion torii gates.
-              </p>
+              <p>{place.description}</p>
             </div>
           </div>
 
-          {/* RIGHT */}
           <aside className={scss.sidebar}>
             <div className={scss.infoCard}>
               <div className={scss.topInfo}>
-                <span className={scss.type}>Culture</span>
+                <span className={scss.type}>{place.type}</span>
 
-                <span className={scss.rating}>★ 4.8</span>
+                <span className={scss.rating}>★ {place.rating}</span>
               </div>
 
-              <h1>Kyoto Temple Walk</h1>
+              <h1>{place.title}</h1>
 
               <div className={scss.location}>
                 <span>⌖</span>
-                Kyoto, Japan
+                {place.city}
               </div>
 
               <div className={scss.divider} />
@@ -84,21 +86,30 @@ const DetailTop = ({place}: IDetailTop) => {
               <span className={scss.priceLabel}>STARTING FROM</span>
 
               <div className={scss.price}>
-                $180
+                ${place.price}
                 <span>/ night</span>
               </div>
 
-              <button className={scss.bookButton}>Book Now</button>
+              <button type="button" className={scss.bookButton}>
+                Book Now
+              </button>
 
-              <button className={scss.wishlistButton}>Save to Wishlist</button>
+              <button
+                type="button"
+                className={`${scss.wishlistButton} ${
+                  isSaved ? scss.saved : ""
+                }`}
+                onClick={handleWishlist}
+              >
+                {isSaved ? "✓ Saved to Wishlist" : "♡ Save to Wishlist"}
+              </button>
             </div>
 
-            {/* Author */}
             <div className={scss.authorCard}>
               <span className={scss.publishedLabel}>PUBLISHED BY</span>
 
               <div className={scss.author}>
-                <img src="/images/avatar.jpg" alt="Yuki Tanaka" />
+                <div className={scss.authorAvatar}>Y</div>
 
                 <div>
                   <strong>Yuki Tanaka</strong>
@@ -109,6 +120,49 @@ const DetailTop = ({place}: IDetailTop) => {
           </aside>
         </div>
       </div>
+
+      {showModal && (
+        <div className={scss.modalOverlay} onClick={() => setShowModal(false)}>
+          <div
+            className={scss.modal}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={scss.closeButton}
+              onClick={() => setShowModal(false)}
+            >
+              ×
+            </button>
+
+            <div className={scss.successIcon}>✓</div>
+
+            <h2>Added to Wishlist!</h2>
+
+            <p>
+              <strong>{place.title}</strong> has been added to your wishlist.
+            </p>
+
+            <div className={scss.modalActions}>
+              <Link
+                href="/wishlist"
+                className={scss.viewWishlistButton}
+                onClick={() => setShowModal(false)}
+              >
+                View Wishlist
+              </Link>
+
+              <button
+                type="button"
+                className={scss.continueButton}
+                onClick={() => setShowModal(false)}
+              >
+                Continue Browsing
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

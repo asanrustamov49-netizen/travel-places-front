@@ -18,32 +18,25 @@ const HomeCards = ({ place }: HomeCardsProps) => {
           fill
           className={scss.image}
         />
-
         <span className={scss.type}>{place.type}</span>
-
         <span className={scss.rating}>
           <Star size={13} fill="currentColor" />
           {place.rating}
         </span>
       </div>
-
       <div className={scss.content}>
         <div className={scss.titleRow}>
           <h3>{place.title}</h3>
-
           <div className={scss.price}>
             <strong>${place.price}</strong>
             <span>/night</span>
           </div>
         </div>
-
         <div className={scss.location}>
           <MapPin size={14} />
           <span>{place.country_id}</span>
         </div>
-
         <p>{place.description}</p>
-
         <Link href={`/detail/${place.id}`} className={scss.button}>
           View Details
         </Link>

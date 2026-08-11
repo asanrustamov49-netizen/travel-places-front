@@ -23,23 +23,18 @@ const Footer = () => {
                 beautiful travel destinations.
               </p>
             </div>
-
             <div className={scss.links}>
               <div className={scss.column}>
                 <h3>EXPLORE</h3>
-
                 <Link href="/#browse">Browse Places</Link>
                 <Link href="/add">Add a Place</Link>
               </div>
-
               <div className={scss.column}>
                 <h3>ACCOUNT</h3>
-
                 <Link href="/login">Sign In</Link>
                 <Link href="/register">Sign Up</Link>
                 <Link href="/profile">Profile</Link>
               </div>
-
               <div className={scss.column}>
                 <h3>ADMIN</h3>
                 <Link href="/admin">Dashboard</Link>

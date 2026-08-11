@@ -2,8 +2,8 @@ import DetailTop from "@/components/widgets/detailTop/DetailTop";
 import scss from "./detail.module.scss";
 import DetailRating from "@/components/widgets/detailRating/DetailRating";
 import MoreDestinations from "@/components/widgets/moreDestinations/MoreDestinations";
-import { useGetOnePlace } from "@/hooks/places/useGetOnePlace";
 import { useParams } from "next/navigation";
+import { useGetOnePlace } from "@/hooks/functions/places/useGetOnePlace";
 
 const Detail = () => {
   const { params } = useParams();

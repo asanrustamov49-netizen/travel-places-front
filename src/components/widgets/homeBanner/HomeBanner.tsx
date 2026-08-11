@@ -13,18 +13,15 @@ const HomeBanner = () => {
                 <Sparkles size={15} />
                 <span>Discover the World</span>
               </div>
-
               <h1>
                 Find Your Next
                 <span>Dream Destination</span>
               </h1>
-
               <p>
                 Browse thousands of travel destinations shared by
                 <br />
                 explorers around the world.
               </p>
-
               <div className={scss.searchBox}>
                 <div className={scss.searchInput}>
                   <Search size={21} />
@@ -33,7 +30,6 @@ const HomeBanner = () => {
                     placeholder="Search destinations, cities, countries..."
                   />
                 </div>
-
                 <Link id="browse" href="#destinations" className={scss.button}>
                   Browse Places
                 </Link>

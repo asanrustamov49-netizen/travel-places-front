@@ -87,7 +87,10 @@ const AdminPanel = () => {
                   }}
                 >
                   {tab.label}
-                  <span>{tab.key === "places" ? totalPlaces : totalUsers}</span>
+
+                  <span className={scss.tabCount}>
+                    {tab.key === "places" ? totalPlaces : totalUsers}
+                  </span>
                 </button>
               ))}
             </div>

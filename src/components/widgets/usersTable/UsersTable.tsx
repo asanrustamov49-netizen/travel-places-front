@@ -21,39 +21,27 @@ const UsersTable = ({ users }: UsersTableProps) => {
               <th>Actions</th>
             </tr>
           </thead>
-
           <tbody>
             {users.map((user) => {
               const firstLetter = user.name.charAt(0).toUpperCase();
-
               return (
                 <tr key={user.id}>
-                  {/* USER */}
                   <td>
                     <div className={scss.userCell}>
                       <div className={scss.avatar}>{firstLetter}</div>
-
                       <div className={scss.userInfo}>
                         <span className={scss.name}>{user.name}</span>
                       </div>
                     </div>
                   </td>
-
-                  {/* EMAIL */}
                   <td className={scss.email}>{user.email}</td>
-
-                  {/* ROLE */}
                   <td>
                     <span
                       className={scss.badge}>
                         User
                     </span>
                   </td>
-
-                  {/* PLACES */}
                   <td className={scss.places}>{user.places_count ?? 0}</td>
-
-                  {/* JOINED */}
                   <td className={scss.joined}>
                     {new Date(user.created_at).toLocaleDateString("en-US", {
                       month: "short",
@@ -61,14 +49,11 @@ const UsersTable = ({ users }: UsersTableProps) => {
                       year: "numeric",
                     })}
                   </td>
-
-                  {/* ACTIONS */}
                   <td>
                     <div className={scss.actions}>
                       <button type="button" className={scss.editBtn}>
                         Edit
                       </button>
-
                       <button type="button" className={scss.deleteBtn}>
                         Delete
                       </button>
@@ -79,7 +64,6 @@ const UsersTable = ({ users }: UsersTableProps) => {
             })}
           </tbody>
         </table>
-
         {users.length === 0 && (
           <div className={scss.empty}>
             <h3>No users found</h3>

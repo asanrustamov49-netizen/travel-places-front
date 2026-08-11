@@ -1,151 +1,136 @@
 .container {
-    padding: 55px 0px;
+  padding: 55px 0;
   background: #f8fafc;
-}
 
-.mainContainer {
-  width: 100%;
-}
+  .mainContainer {
+    width: 100%;
 
-.heading {
-  margin-bottom: 40px;
+    .heading {
+      margin-bottom: 40px;
 
-  h1 {
-    margin: 0;
+      h1 {
+        margin: 0;
+        color: #0f172a;
+        font-size: 34px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
 
-    color: #0f172a;
+      p {
+        margin: 12px 0 0;
+        color: #64748b;
+        font-size: 19px;
+        line-height: 1.5;
+      }
+    }
 
-    font-size: 34px;
-    line-height: 1.2;
-    font-weight: 700;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+
+      .card {
+        min-height: 128px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 30px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+
+        &:hover {
+          transform: translateY(-5px) scale(1.01);
+          border-color: #dbeafe;
+          box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+        }
+
+        .icon {
+          width: 60px;
+          height: 60px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 15px;
+        }
+
+        .users {
+          background: #eef2ff;
+          color: #4c1d95;
+        }
+
+        .places {
+          background: #f3efff;
+          color: #6366f1;
+        }
+
+        .countries {
+          background: #ecfdf5;
+          color: #10b981;
+        }
+
+        .rating {
+          background: #fffbeb;
+          color: #eab308;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+
+          strong {
+            color: #0f172a;
+            font-size: 34px;
+            line-height: 1;
+            font-weight: 700;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
   }
 
-  p {
-    margin: 12px 0 0;
-
-    color: #64748b;
-
-    font-size: 19px;
-    line-height: 1.5;
-  }
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.card {
-  min-height: 128px;
-
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  padding: 24px 30px;
-
-  background: #ffffff;
-
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-
-  &:hover {
-    transform: translateY(-5px) scale(1.01);
-
-    border-color: #dbeafe;
-
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
-  }
-}
-
-.icon {
-  width: 60px;
-  height: 60px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 15px;
-}
-
-.users {
-  background: #eef2ff;
-  color: #4c1d95;
-}
-
-.places {
-  background: #f3efff;
-  color: #6366f1;
-}
-
-.countries {
-  background: #ecfdf5;
-  color: #10b981;
-}
-
-.rating {
-  background: #fffbeb;
-  color: #eab308;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-
-  strong {
-    color: #0f172a;
-
-    font-size: 34px;
-    line-height: 1;
-    font-weight: 700;
+  @media (max-width: 1000px) {
+    .mainContainer {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   }
 
-  span {
-    color: #64748b;
-
-    font-size: 16px;
-    font-weight: 500;
-  }
-}
-
-@media (max-width: 1000px) {
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
+  @media (max-width: 600px) {
     padding: 35px 0;
-  }
 
-  .heading {
-    h1 {
-      font-size: 28px;
+    .mainContainer {
+      .heading {
+        h1 {
+          font-size: 28px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+
+        .card {
+          min-height: 110px;
+        }
+      }
     }
-
-    p {
-      font-size: 16px;
-    }
-  }
-
-  .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    min-height: 110px;
   }
 }

@@ -34,10 +34,8 @@ const DetailCards = () => {
           <div className={scss.image}>
             <img src={destination.image} alt={destination.title} />
           </div>
-
           <div className={scss.content}>
             <h3>{destination.title}</h3>
-
             <p>
               <span>⌖</span>
               {destination.location}

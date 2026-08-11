@@ -1,5 +1,4 @@
 import { Users, Map, Globe, Star } from "lucide-react";
-
 import scss from "./adminDashboard.module.scss";
 
 const stats = [
@@ -40,20 +39,16 @@ const AdminDashboard = () => {
         <div className={scss.mainContainer}>
           <div className={scss.heading}>
             <h1>Admin Dashboard</h1>
-
             <p>Manage users, places, and platform content.</p>
           </div>
-
           <div className={scss.stats}>
             {stats.map((item) => {
               const Icon = item.icon;
-
               return (
                 <div className={scss.card} key={item.id}>
                   <div className={`${scss.icon} ${scss[item.iconClass]}`}>
                     <Icon size={25} strokeWidth={2.3} />
                   </div>
-
                   <div className={scss.info}>
                     <strong>{item.value}</strong>
                     <span>{item.title}</span>
