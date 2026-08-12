@@ -1,15 +1,21 @@
 "use client";
+
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import scss from "./header.module.scss";
-import { IoLocationSharp } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import { IoLocationSharp } from "react-icons/io5";
+
+import scss from "./header.module.scss";
 import UserAvatar from "@/components/ui/userAvatar/UserAvatar";
 import { useAuth } from "@/hooks/functions/auth/useAuth";
+import { useProfile } from "@/hooks/functions/auth/useProfile";
 
 const Header = () => {
   const pathname = usePathname();
-  const {isAuth} = useAuth()
+  const { isAuth } = useAuth();
+
+  const { data: profile } = useProfile({
+    enabled: isAuth,
+  });
 
   return (
     <header className={scss.header}>
@@ -50,7 +56,7 @@ const Header = () => {
                 </Link>
 
                 <Link href="/profile" className={scss.avatar}>
-                  <UserAvatar name="User" size="small" />
+                  {profile && <UserAvatar name={profile.name} />}
                 </Link>
               </>
             ) : (

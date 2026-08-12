@@ -8,7 +8,6 @@ interface UserAvatarProps {
 const UserAvatar = ({ name, size = "medium" }: UserAvatarProps) => {
   const initial = name.trim().charAt(0).toUpperCase();
   const colors = [
-    "#2563EB",
     "#7C3AED",
     "#059669",
     "#D97706",

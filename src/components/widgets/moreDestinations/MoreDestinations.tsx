@@ -1,38 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import scss from "./moreDestinations.module.scss";
-import HomeCards from "@/components/ui/homeCards/HomeCards";
 import DetailCards from "@/components/ui/detailCards/DetailCards";
+import { useGetPlaces } from "@/hooks/functions/places/useGetPlaces";
 
 const MoreDestinations = () => {
-  const destinations = [
-    {
-      id: 1,
-      title: "Amalfi Coast Escape",
-      city: "Amalfi, Italy",
-      type: "Beach",
-      price: 320,
-      rating: 4.9,
-      image: "/images/amalfi.jpg",
-    },
-    {
-      id: 2,
-      title: "Santorini Sunset",
-      city: "Oia, Greece",
-      type: "Beach",
-      price: 410,
-      rating: 4.9,
-      image: "/images/santorini.jpg",
-    },
-    {
-      id: 3,
-      title: "Patagonia Trek",
-      city: "El Chaltén, Argentina",
-      type: "Adventure",
-      price: 250,
-      rating: 4.7,
-      image: "/images/patagonia.jpg",
-    },
-  ];
+  const { data, isLoading, isError } = useGetPlaces({
+    page: 1,
+    limit: 3,
+    sort: "newest",
+  });
+
+  if (isLoading) return <p>Loading destinations...</p>;
+  if (isError) return <p>Failed to load destinations.</p>;
 
   return (
     <section className={scss.container}>
@@ -42,7 +23,8 @@ const MoreDestinations = () => {
             <h2>More Destinations</h2>
             <Link href="/#destinations">View all</Link>
           </div>
-          <DetailCards />
+
+          <DetailCards destinations={data?.data ?? []} />
         </div>
       </div>
     </section>

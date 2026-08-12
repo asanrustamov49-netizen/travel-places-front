@@ -1,3 +1,5 @@
+import { IUserProfile } from "./userTypes";
+
 export interface IRegisterBody {
   name: string;
   email: string;
@@ -9,15 +11,16 @@ export interface ILoginBody {
   password: string;
 }
 
-export interface IUser {
+export interface IUserPlace {
   id: number;
-  name: string;
-  email: string;
-  created_at: string;
-  updated_at: string;
+  title: string;
+  city: string;
+  price: number;
+  type: "Beach" | "Culture" | "Adventure" | "Nature" | "City";
+  image: string | null;
 }
 
 export interface IProfileResponse {
   message: string;
-  data: IUser;
+  data: IUserProfile;
 }

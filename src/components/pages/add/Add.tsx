@@ -30,7 +30,7 @@ const CATEGORIES = ["Beach", "Culture", "Adventure", "Nature", "City"];
 
 const Add = () => {
   const {data: COUNTRIES} = useGetCountries()
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { push } = useRouter();
   const { mutateAsync: createPlace } = useCreatePlace();
   const {

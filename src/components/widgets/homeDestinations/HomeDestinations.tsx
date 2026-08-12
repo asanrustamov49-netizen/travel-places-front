@@ -6,7 +6,7 @@ import HomeCards from "@/components/ui/homeCards/HomeCards";
 import { useGetPlaces } from "@/hooks/functions/places/useGetPlaces";
 import { TSort, TypeSort } from "@/hooks/types/placesTypes";
 
-const types = ["All", "Beach", "Culture", "Adventure", "Nature", "City"];
+const types: TypeSort[] = ["All", "Beach", "Culture", "Adventure", "Nature", "City"];
 
 const HomeDestinations = () => {
   const [type, setType] = useState<TypeSort>("All");

@@ -42,8 +42,8 @@ const AdminPanel = () => {
     sort,
   });
   const places = placesData?.data ?? [];
-  const totalPlaces = placesData?.pagination.total ?? 0;
-  const placesTotalPages = placesData?.pagination.pages ?? 1;
+  const totalPlaces = placesData?.pagination?.total ?? 0;
+  const placesTotalPages = placesData?.pagination?.pages ?? 1;
 
   const {
     data: usersData,
@@ -55,8 +55,8 @@ const AdminPanel = () => {
     search: search || undefined,
   });
   const users = usersData?.data ?? [];
-  const totalUsers = usersData?.pagination.total ?? 0;
-  const usersTotalPages = usersData?.pagination.pages ?? 1;
+  const totalUsers = usersData?.pagination?.total ?? 0;
+  const usersTotalPages = usersData?.pagination?.pages ?? 1;
 
   const totalPages =
     activeTab === "places" ? placesTotalPages : usersTotalPages;

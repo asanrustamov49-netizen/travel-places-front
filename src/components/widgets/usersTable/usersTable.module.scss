@@ -1,216 +1,402 @@
-.container {
+.wrapper {
   width: 100%;
   overflow-x: auto;
+}
 
-  .wrapper {
-    width: 100%;
-    overflow-x: auto;
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 480px;
+
+  padding: 35px;
+
+  background: #fff;
+  border-radius: 24px;
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+
+  animation: modalOpen 0.2s ease;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.97);
   }
 
-  .table {
-    width: 100%;
-    min-width: 850px;
-    border-collapse: collapse;
-
-    thead {
-      background: #f9fafb;
-
-      th {
-        text-align: left;
-        padding: 14px 24px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #9ca3af;
-        white-space: nowrap;
-      }
-    }
-
-    tbody {
-      tr {
-        border-bottom: 1px solid #f0f1f3;
-        transition: background 0.15s ease;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
-        &:hover {
-          background: #fafbff;
-        }
-      }
-
-      td {
-        padding: 14px 24px;
-        font-size: 14px;
-        color: #111827;
-        vertical-align: middle;
-      }
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
+}
 
-  // ================================
-  // USER
-  // ================================
+.close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
 
-  .userCell {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 210px;
-  }
+  width: 34px;
+  height: 34px;
 
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  border: none;
+  border-radius: 50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: #f3f4f6;
 
-    background: #2f4bff;
-    color: #fff;
+  font-size: 24px;
+  line-height: 1;
 
-    font-size: 14px;
-    font-weight: 700;
+  cursor: pointer;
 
-    flex-shrink: 0;
-    text-transform: uppercase;
-  }
+  transition: 0.2s;
+}
 
-  .userName {
-    font-weight: 700;
-    color: #111827;
-    white-space: nowrap;
-  }
+.close:hover {
+  background: #e5e7eb;
+}
 
-  .email {
-    color: #6b7280;
-    white-space: nowrap;
-  }
+.modal h2 {
+  margin: 0 0 8px;
 
-  .places {
-    font-weight: 700;
-    color: #2f4bff;
-  }
+  font-size: 26px;
+  font-weight: 700;
+}
 
-  // ================================
-  // JOINED
-  // ================================
+.modalDescription {
+  margin: 0 0 25px;
 
-  .joined {
-    color: #6b7280;
-    white-space: nowrap;
-  }
+  color: #777;
+  line-height: 1.6;
+}
 
-  // ================================
-  // ROLE
-  // ================================
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
+.form label {
+  margin-top: 10px;
 
-    padding: 5px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
 
-    border-radius: 8px;
+.form input {
+  width: 100%;
 
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
+  padding: 13px 15px;
 
-  .badgeAdmin {
-    background: #eef2ff;
-    color: #2f4bff;
-  }
+  border: 1px solid #ddd;
+  border-radius: 12px;
 
-  .badgeUser {
-    background: #f3f4f6;
-    color: #374151;
-  }
+  outline: none;
 
-  // ================================
-  // ACTIONS
-  // ================================
+  font-size: 15px;
 
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
+  transition: 0.2s;
+}
 
-  .editBtn,
-  .deleteBtn {
-    padding: 7px 14px;
+.form input:focus {
+  border-color: #bc9450;
+  box-shadow: 0 0 0 3px rgba(188, 148, 80, 0.12);
+}
 
-    border: none;
-    border-radius: 8px;
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
 
-    font-size: 13px;
-    font-weight: 600;
+  margin-top: 30px;
+}
 
-    cursor: pointer;
+.cancelBtn,
+.saveBtn,
+.confirmDeleteBtn {
+  padding: 12px 20px;
 
-    transition:
-      opacity 0.15s ease,
-      transform 0.15s ease;
+  border: none;
+  border-radius: 12px;
 
-    &:hover {
-      opacity: 0.8;
-    }
+  font-weight: 600;
 
-    &:active {
-      transform: scale(0.97);
-    }
-  }
+  cursor: pointer;
 
-  .editBtn {
-    background: #f3f4f6;
-    color: #374151;
-  }
+  transition: 0.2s;
+}
 
-  .deleteBtn {
-    background: #fee2e2;
-    color: #dc2626;
-  }
+.cancelBtn {
+  background: #f3f4f6;
+  color: #444;
+}
 
-  // ================================
-  // EMPTY
-  // ================================
+.cancelBtn:hover {
+  background: #e5e7eb;
+}
 
-  .empty {
-    padding: 60px 20px;
-    text-align: center;
+.saveBtn {
+  background: #bc9450;
+  color: white;
+}
 
-    h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      color: #111827;
-    }
+.saveBtn:hover {
+  background: #a98143;
+}
 
-    p {
-      margin: 0;
+.deleteIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: #fff1f1;
+  color: #dc2626;
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.confirmDeleteBtn {
+  background: #dc2626;
+  color: white;
+}
+
+.confirmDeleteBtn:hover {
+  background: #b91c1c;
+}
+
+.saveBtn:disabled,
+.confirmDeleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+
+  thead {
+    background: #f9fafb;
+
+    th {
+      text-align: left;
+      padding: 14px 24px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: #9ca3af;
-      font-size: 14px;
+      white-space: nowrap;
     }
   }
 
-  // ================================
-  // RESPONSIVE
-  // ================================
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f1f3;
+      transition: background 0.15s ease;
 
-  @media (max-width: 768px) {
-    .table {
-      min-width: 750px;
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: #fafbff;
+      }
     }
 
-    .table thead th,
-    .table tbody td {
-      padding: 12px 16px;
+    td {
+      padding: 14px 24px;
+      font-size: 14px;
+      color: #111827;
+      vertical-align: middle;
     }
+  }
+}
+
+// ================================
+// USER
+// ================================
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 210px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2f4bff;
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.userName {
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.email {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.places {
+  font-weight: 700;
+  color: #2f4bff;
+}
+
+// ================================
+// JOINED
+// ================================
+
+.joined {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+// ================================
+// ROLE
+// ================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 12px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badgeAdmin {
+  background: #eef2ff;
+  color: #2f4bff;
+}
+
+.badgeUser {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+// ================================
+// ACTIONS
+// ================================
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.editBtn,
+.deleteBtn {
+  padding: 7px 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.editBtn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.deleteBtn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+// ================================
+// EMPTY
+// ================================
+
+.empty {
+  padding: 60px 20px;
+  text-align: center;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #111827;
+  }
+
+  p {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+}
+
+// ================================
+// RESPONSIVE
+// ================================
+
+@media (max-width: 768px) {
+  .table {
+    min-width: 750px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 12px 16px;
   }
 }

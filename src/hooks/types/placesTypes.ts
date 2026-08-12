@@ -1,6 +1,6 @@
 export interface IPlaceNewBody {
   id: number;
-  body: ICreatePlaceBody;
+  body: IUpdatePlaceBody;
 }
 export interface IPlaceResponse {
   message: string;
@@ -28,6 +28,8 @@ export interface ICreatePlaceBody {
   images: File[];
 }
 
+export type IUpdatePlaceBody = Omit<ICreatePlaceBody, "images">;
+
 export interface IPlaceFilters {
   country_id?: number;
   type?: PlaceType;
@@ -47,16 +49,19 @@ export interface IPlaceResult {
   title: string;
   description: string;
   city: string;
-  type: "Beach" | "Culture" | "Adventure" | "Nature" | "City";
+  type: PlaceType;
   price: number;
   rating: number;
   created_at: string;
-  user_id: number;
-  author_name: string;
-  author_avatar?: string;
   country_id: number;
   country_name: string;
-  image: IPlaceImage
+
+  author_name: string;
+
+  image: {
+    id: number;
+    image_url: string;
+  } | null;
 }
 
 export interface IPlaceImage {

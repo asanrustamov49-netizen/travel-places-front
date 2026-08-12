@@ -1,28 +1,12 @@
 import Link from "next/link";
 import scss from "./detailCards.module.scss";
+import { IPlaceResult } from "@/hooks/types/placesTypes";
 
-const DetailCards = () => {
-  const destinations = [
-    {
-      id: 1,
-      title: "Amalfi Coast Escape",
-      location: "Amalfi, Italy",
-      image: "/images/amalfi.jpg",
-    },
-    {
-      id: 2,
-      title: "Santorini Sunset",
-      location: "Oia, Greece",
-      image: "/images/santorini.jpg",
-    },
-    {
-      id: 3,
-      title: "Patagonia Trek",
-      location: "El Chaltén, Argentina",
-      image: "/images/patagonia.jpg",
-    },
-  ];
+interface IDetailCards {
+  destinations: IPlaceResult[];
+}
 
+const DetailCards = ({ destinations }: IDetailCards) => {
   return (
     <div className={scss.cards}>
       {destinations.map((destination) => (
@@ -32,13 +16,16 @@ const DetailCards = () => {
           key={destination.id}
         >
           <div className={scss.image}>
-            <img src={destination.image} alt={destination.title} />
+            <img
+              src={destination.image?.image_url || "/register-bg.avif"}
+              alt={destination.title}
+            />
           </div>
           <div className={scss.content}>
             <h3>{destination.title}</h3>
             <p>
               <span>⌖</span>
-              {destination.location}
+              {destination.country_name}, {destination.city}
             </p>
           </div>
         </Link>

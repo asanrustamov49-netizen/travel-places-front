@@ -1,13 +1,27 @@
 "use client";
 import { userApi } from "@/hooks/api/userApi";
-import { INewUserBody } from "@/hooks/types/userTypes";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useUpdateUser = () =>
-  useMutation({
-    mutationKey: ["update user"],
-    mutationFn: async ({ id, body }: INewUserBody) => {
-      const response = await userApi.patch(`/${id}`, body);
+interface IUpdateUser {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, name, email }: IUpdateUser) => {
+      const response = await userApi.patch(`/${id}`, {
+        name,
+        email,
+      });
       return response.data;
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
+    },
   });
+};

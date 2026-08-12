@@ -9,11 +9,16 @@ interface HomeCardsProps {
 }
 
 const HomeCards = ({ place }: HomeCardsProps) => {
+  const description = place.description ?? "";
+
+  const descriptionPreview = description.split(/\s+/).slice(0, 20).join(" ");
+
+  const hasMoreDescription = description.trim().split(/\s+/).length > 20;
   return (
     <article className={scss.card}>
       <div className={scss.imageWrapper}>
         <Image
-          src={place.image}
+          src={place.image?.image_url ?? "/login-bg.avif"}
           alt={place.title}
           fill
           className={scss.image}
@@ -21,7 +26,7 @@ const HomeCards = ({ place }: HomeCardsProps) => {
         <span className={scss.type}>{place.type}</span>
         <span className={scss.rating}>
           <Star size={13} fill="currentColor" />
-          {place.rating}
+          {Number(place.rating).toFixed(1)}
         </span>
       </div>
       <div className={scss.content}>
@@ -34,9 +39,16 @@ const HomeCards = ({ place }: HomeCardsProps) => {
         </div>
         <div className={scss.location}>
           <MapPin size={14} />
-          <span>{place.country_id}</span>
+          <span>
+            {place.country_name}, {place.city}
+          </span>
         </div>
-        <p>{place.description}</p>
+        <p>
+          <p>
+            {descriptionPreview}
+            {hasMoreDescription && "..."}
+          </p>
+        </p>
         <Link href={`/detail/${place.id}`} className={scss.button}>
           View Details
         </Link>

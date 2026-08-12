@@ -1,6 +1,20 @@
+import { IPlaceResult } from "./placesTypes";
+
 export interface INewUserBody {
   id: number;
   body: IUserBody;
+}
+
+
+export interface IUserProfile {
+  id: number;
+  name: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
+  total_places: number;
+  total_countries: number;
+  places: IPlaceResult[];
 }
 
 export interface IUserBody {
