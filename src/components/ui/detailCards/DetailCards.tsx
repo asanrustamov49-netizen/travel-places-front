@@ -17,7 +17,11 @@ const DetailCards = ({ destinations }: IDetailCards) => {
         >
           <div className={scss.image}>
             <img
-              src={destination.image?.image_url || "/register-bg.avif"}
+              src={
+                destination.image?.image_url
+                  ? `http://localhost:5000${destination.image.image_url}`
+                  : "/no-image.jpg"
+              }
               alt={destination.title}
             />
           </div>

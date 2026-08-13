@@ -18,7 +18,11 @@ const HomeCards = ({ place }: HomeCardsProps) => {
     <article className={scss.card}>
       <div className={scss.imageWrapper}>
         <Image
-          src={place.image?.image_url ?? "/login-bg.avif"}
+          src={
+            place.image?.image_url
+              ? `http://localhost:5000${place.image.image_url}`
+              : "/no-image.jpg"
+          }
           alt={place.title}
           fill
           className={scss.image}
@@ -43,12 +47,10 @@ const HomeCards = ({ place }: HomeCardsProps) => {
             {place.country_name}, {place.city}
           </span>
         </div>
-        <p>
           <p>
             {descriptionPreview}
             {hasMoreDescription && "..."}
           </p>
-        </p>
         <Link href={`/detail/${place.id}`} className={scss.button}>
           View Details
         </Link>

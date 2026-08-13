@@ -1,6 +1,6 @@
 "use client";
 import { useGetMyBookings } from "@/hooks/functions/bookings/useGetMyBookings";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import scss from "./detailTop.module.scss";
 import { IPlaceResult } from "@/hooks/types/placesTypes";
@@ -31,6 +31,20 @@ const DetailTop = ({ place }: IDetailTop) => {
     addToWishList(place);
     setShowModal(true);
   };
+  const images = useMemo(
+    () => [
+      place.image?.image_url
+        ? `http://localhost:5000${place.image.image_url}`
+        : "/no-image.jpg",
+
+      "/login-bg.avif",
+      "/mortgage.avif",
+      "/register-bg.avif",
+    ],
+    [place.image?.image_url],
+  );
+
+  const [selectedImage, setSelectedImage] = useState(images[0]);
   const handleBookNow = () => {
     if (!token) {
       setShowAuthModal(true);
@@ -50,27 +64,21 @@ const DetailTop = ({ place }: IDetailTop) => {
         <div className={scss.mainContainer}>
           <div className={scss.leftSide}>
             <div className={scss.mainImage}>
-              <img
-                src={place.image?.image_url || "/travel-banner.avif"}
-                alt={place.title}
-              />
+              <img src={selectedImage} alt={place.title} />
             </div>
             <div className={scss.gallery}>
-              <button type="button">
-                <img
-                  src={place.image?.image_url || "/travel-banner.avif"}
-                  alt={place.title}
-                />
-              </button>
-              <button type="button">
-                <img src="/login-bg.avif" alt={place.title} />
-              </button>
-              <button type="button">
-                <img src="/mortgage.avif" alt={place.title} />
-              </button>
-              <button type="button">
-                <img src="/register-bg.avif" alt={place.title} />
-              </button>
+              {images.map((image, index) => (
+                <button
+                  type="button"
+                  key={image}
+                  onClick={() => setSelectedImage(image)}
+                  className={
+                    selectedImage === image ? scss.activeThumbnail : ""
+                  }
+                >
+                  <img src={image} alt={`${place.title} ${index + 1}`} />
+                </button>
+              ))}
             </div>
             <div className={scss.about}>
               <h2>About this destination</h2>

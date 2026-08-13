@@ -1,377 +1,300 @@
 .container {
   padding: 38px 0 35px;
   background: #f7f9fc;
-  .authIcon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #f5efe5;
-
-    font-size: 28px;
+}
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 23px;
+  font-size: 15px;
+  color: #667085;
+  overflow: hidden;
+  a {
+    flex-shrink: 0;
+    color: #98a2b3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    &:hover {
+      color: #2563eb;
+    }
   }
-
-  .modal {
+  span:last-child {
+    overflow: hidden;
+    color: #344054;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.mainContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 352px;
+  gap: 24px;
+  align-items: start;
+}
+.leftSide {
+  min-width: 0;
+  width: 100%;
+}
+.mainImage {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #e5e7eb;
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
+.gallery {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  button {
     position: relative;
-
-    width: min(90%, 450px);
-
-    padding: 35px;
-
-    border-radius: 22px;
-
-    background: #fff;
-
-    text-align: center;
-
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-
-    h2 {
-      margin-bottom: 12px;
-      color: #222;
+    width: 120px;
+    height: 70px;
+    padding: 0;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease,
+      box-shadow 0.2s ease;
+    &:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
-
-    p {
-      margin-bottom: 25px;
-
-      color: #777;
-
-      line-height: 1.6;
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
   }
-  .breadcrumbs {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 23px;
-    font-size: 15px;
+}
+.activeThumbnail {
+  border-color: #bc9450 !important;
+  box-shadow: 0 0 0 3px rgba(188, 148, 80, 0.15);
+}
+.about {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid #e4e7ec;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
+  h2 {
+    margin: 0 0 13px;
+
+    color: #101828;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  p {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    margin: 0;
+
     color: #667085;
 
-    a {
-      color: #98a2b3;
-      text-decoration: none;
-      transition: color 0.2s ease;
+    font-size: 16px;
+    line-height: 1.7;
 
-      &:hover {
-        color: #2563eb;
-      }
-    }
+    white-space: normal;
 
-    span:last-child {
-      color: #344054;
-      font-weight: 500;
-    }
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  min-width: 0;
+}
+
+.infoCard {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 27px 25px;
+
+  border: 1px solid #dfe3e8;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(16, 24, 40, 0.06);
+}
+.topInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.type {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #eef5ff;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+}
+.rating {
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  background: #f8fafc;
+  color: #344054;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.infoCard h1 {
+  margin: 12px 0 6px;
+
+  color: #101828;
+
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #667085;
+
+  font-size: 15px;
+
+  span {
+    flex-shrink: 0;
+  }
+}
+
+.divider {
+  height: 1px;
+
+  margin: 20px 0;
+
+  background: #eaecf0;
+}
+
+.priceLabel {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #98a2b3;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.price {
+  color: #2563eb;
+
+  font-size: 31px;
+  font-weight: 700;
+
+  span {
+    color: #667085;
+
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+
+.bookButton,
+.wishlistButton {
+  width: 100%;
+  min-height: 44px;
+
+  margin-top: 16px;
+
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.bookButton {
+  border: none;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  &:hover {
+    background: #1d4ed8;
+
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
   }
 
-  .mainContainer {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 352px;
-    gap: 24px;
-    align-items: start;
+  &:active {
+    transform: scale(0.98);
+  }
+}
 
-    .leftSide {
-      min-width: 0;
+.wishlistButton {
+  margin-top: 8px;
 
-      .mainImage {
-        width: 800px;
-        height: 385px;
-        overflow: hidden;
-        border-radius: 21px;
-        background: #e4e7ec;
+  border: 1px solid #d9dee7;
 
-        img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
+  background: #f8fafc;
+  color: #344054;
 
-        &:hover {
-          img {
-            transform: scale(1.02);
-          }
-        }
-      }
-
-      .gallery {
-        display: flex;
-        gap: 19px;
-        margin-top: 15px;
-
-        button {
-          width: 95px;
-          height: 55px;
-          padding: 0;
-          overflow: hidden;
-          border: 1px solid #d0d5dd;
-          border-radius: 6px;
-          background: white;
-          cursor: pointer;
-          transition:
-            border-color 0.2s ease,
-            transform 0.2s ease;
-
-          &:hover {
-            border-color: #2563eb;
-            transform: translateY(-2px);
-          }
-
-          &:focus {
-            outline: 2px solid rgba(37, 99, 235, 0.2);
-            outline-offset: 1px;
-          }
-
-          img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-          }
-        }
-      }
-
-      .about {
-        margin-top: 24px;
-        width: 800px;
-        padding: 20px;
-        border: 1px solid #e4e7ec;
-        border-radius: 10px;
-        background: #ffffff;
-        box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
-
-        h2 {
-          margin: 0 0 13px;
-          color: #101828;
-          font-size: 24px;
-          font-weight: 700;
-        }
-
-        p {
-          margin: 0;
-          line-height: 1.7;
-          overflow-wrap: anywhere;
-          word-break: break-word;
-
-          &:last-child {
-            margin-bottom: 0;
-          }
-        }
-      }
-    }
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-
-      .infoCard {
-        width: 350px;
-        height: 350px;
-        padding: 27px 25px;
-        border: 1px solid #dfe3e8;
-        border-radius: 11px;
-        background: #ffffff;
-        box-shadow: 0 3px 10px rgba(16, 24, 40, 0.06);
-
-        .topInfo {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          .type {
-            padding: 3px 7px;
-            border-radius: 5px;
-            background: #eef5ff;
-            color: #2563eb;
-            font-size: 13px;
-            font-weight: 600;
-          }
-
-          .rating {
-            padding: 3px 6px;
-            border-radius: 5px;
-            background: #f8fafc;
-            color: #344054;
-            font-size: 12px;
-            font-weight: 600;
-          }
-        }
-
-        h1 {
-          margin: 9px 0 5px;
-          color: #101828;
-          font-size: 23px;
-          line-height: 1.3;
-          font-weight: 700;
-        }
-
-        .location {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          color: #667085;
-          font-size: 15px;
-
-          span {
-            color: #667085;
-          }
-        }
-
-        .divider {
-          height: 1px;
-          margin: 20px 0;
-          background: #eaecf0;
-        }
-
-        .priceLabel {
-          display: block;
-          margin-bottom: 15px;
-          color: #98a2b3;
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 0.5px;
-        }
-
-        .price {
-          color: #2563eb;
-          font-size: 31px;
-          font-weight: 700;
-
-          span {
-            color: #667085;
-            font-size: 16px;
-            font-weight: 400;
-          }
-        }
-
-        .bookButton,
-        .wishlistButton {
-          width: 100%;
-          height: 42px;
-          margin-top: 20px;
-          border-radius: 14px;
-          font-size: 16px;
-          font-weight: 600;
-          cursor: pointer;
-          transition:
-            background 0.2s ease,
-            transform 0.15s ease,
-            box-shadow 0.2s ease;
-        }
-
-        .bookButton {
-          border: none;
-          background: #2563eb;
-          color: #ffffff;
-
-          &:hover {
-            background: #1d4ed8;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
-          }
-
-          &:active {
-            transform: scale(0.98);
-          }
-        }
-
-        .wishlistButton {
-          margin-top: 7px;
-          border: 1px solid #d9dee7;
-          background: #f8fafc;
-          color: #344054;
-
-          &:hover {
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-          }
-        }
-      }
-
-      .authorCard {
-        height: 130px;
-        padding: 25px;
-        border: 1px solid #dfe3e8;
-        border-radius: 13px;
-        background: #ffffff;
-        box-shadow: 0 3px 10px rgba(16, 24, 40, 0.05);
-
-        .publishedLabel {
-          display: block;
-          margin-bottom: 16px;
-          color: #98a2b3;
-          font-size: 15px;
-          letter-spacing: 0.5px;
-        }
-
-        .author {
-          display: flex;
-          align-items: center;
-          gap: 18px;
-
-          img {
-            width: 60px;
-            height: 65px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-
-          div {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 18px;
-            gap: 4px;
-          }
-
-          strong {
-            color: #344054;
-            font-size: 16px;
-          }
-
-          span {
-            color: #98a2b3;
-            font-size: 14px;
-          }
-        }
-      }
-    }
+  &:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
   }
 
-  @media (max-width: 850px) {
-    .mainContainer {
-      grid-template-columns: 1fr;
-
-      .sidebar {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  }
-
-  @media (max-width: 600px) {
-    padding-top: 5px;
-
-    .mainContainer {
-      .leftSide {
-        .mainImage {
-          height: 230px;
-        }
-
-        .about {
-          padding: 17px;
-        }
-      }
-
-      .sidebar {
-        display: flex;
-      }
-    }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 }
 
@@ -382,7 +305,81 @@
 }
 
 /* =========================
-   WISHLIST MODAL
+   AUTHOR
+========================= */
+
+.authorCard {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  border: 1px solid #dfe3e8;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(16, 24, 40, 0.05);
+}
+
+.publishedLabel {
+  display: block;
+
+  margin-bottom: 16px;
+
+  color: #98a2b3;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.authorAvatar {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+}
+
+.author > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.author strong {
+  color: #344054;
+
+  font-size: 16px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.author span {
+  color: #98a2b3;
+
+  font-size: 14px;
+}
+
+/* =========================
+   AUTH / WISHLIST MODAL
 ========================= */
 
 .modalOverlay {
@@ -397,6 +394,7 @@
   padding: 20px;
 
   background: rgba(17, 24, 39, 0.45);
+
   backdrop-filter: blur(5px);
 
   animation: overlayShow 0.2s ease;
@@ -407,11 +405,13 @@
 
   width: 100%;
   max-width: 430px;
+  box-sizing: border-box;
 
   padding: 40px 35px 32px;
 
   border-radius: 22px;
-  background: #fff;
+
+  background: #ffffff;
 
   text-align: center;
 
@@ -451,7 +451,8 @@
   }
 }
 
-.successIcon {
+.successIcon,
+.authIcon {
   width: 64px;
   height: 64px;
 
@@ -463,11 +464,20 @@
 
   border-radius: 50%;
 
+  font-size: 30px;
+}
+
+.successIcon {
   background: #eafaf0;
   color: #22a35b;
 
-  font-size: 30px;
   font-weight: 700;
+}
+
+.authIcon {
+  background: #f5efe5;
+
+  font-size: 28px;
 }
 
 .modal h2 {
@@ -503,12 +513,13 @@
 .viewWishlistButton,
 .continueButton {
   width: 100%;
-
   min-height: 46px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  box-sizing: border-box;
 
   border-radius: 10px;
 
@@ -516,28 +527,35 @@
   font-weight: 700;
 
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .viewWishlistButton {
-  background: #2f4bff;
-  color: #fff;
+  background: #2563eb;
+  color: #ffffff;
+
   text-decoration: none;
 
   &:hover {
-    background: #243ed6;
+    background: #1d4ed8;
   }
 }
 
 .continueButton {
   border: 1px solid #e5e7eb;
-  background: #fff;
+
+  background: #ffffff;
   color: #374151;
 
   &:hover {
     background: #f9fafb;
   }
 }
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes overlayShow {
   from {
@@ -561,12 +579,143 @@
   }
 }
 
-@media (max-width: 500px) {
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+  .mainContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .infoCard,
+  .authorCard {
+    height: auto;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 18px 0 28px;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 16px;
+
+    font-size: 13px;
+  }
+
+  .mainContainer {
+    gap: 22px;
+  }
+
+  .mainImage {
+    height: 240px;
+
+    border-radius: 18px;
+  }
+
+  .gallery {
+    gap: 10px;
+
+    margin-top: 12px;
+
+    button {
+      width: 84px;
+      height: 58px;
+
+      border-radius: 9px;
+    }
+  }
+
+  .about {
+    margin-top: 20px;
+    padding: 18px 16px;
+
+    border-radius: 14px;
+
+    h2 {
+      margin-bottom: 10px;
+
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+  }
+
+  .infoCard {
+    padding: 22px 18px;
+  }
+
+  .infoCard h1 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .authorCard {
+    padding: 20px 18px;
+  }
+
   .modal {
     padding: 35px 22px 25px;
   }
 
   .modal h2 {
     font-size: 22px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+  .mainImage {
+    height: 210px;
+  }
+
+  .gallery button {
+    width: 74px;
+    height: 52px;
+  }
+
+  .about {
+    padding: 16px 14px;
+
+    h2 {
+      font-size: 19px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .bookButton,
+  .wishlistButton {
+    font-size: 14px;
   }
 }

@@ -18,9 +18,8 @@ const Footer = () => {
                 </h2>
               </Link>
               <p>
-                Discover and share the world's most
-                <br />
-                beautiful travel destinations.
+                Discover and share the world's most beautiful travel
+                destinations.
               </p>
             </div>
             <div className={scss.links}>

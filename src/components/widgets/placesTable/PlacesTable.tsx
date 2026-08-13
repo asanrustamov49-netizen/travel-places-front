@@ -65,7 +65,7 @@ const PlacesTable = ({ places }: PlacesTableProps) => {
                     <div className={scss.imageWrapper}>
                       {place.image ? (
                         <Image
-                          src={place.image.image_url}
+                          src={`http://localhost:5000${place.image.image_url}`}
                           alt={place.title}
                           fill
                           className={scss.image}

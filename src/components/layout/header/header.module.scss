@@ -1,49 +1,75 @@
 .header {
-  height: 82px;
-  background: #fff;
-  border-bottom: 1px solid #eef2f7;
   position: sticky;
   top: 0;
   z-index: 100;
+
+  width: 100%;
+  height: 82px;
+
+  background: #fff;
+  border-bottom: 1px solid #eef2f7;
 }
 
 .wrapper {
   height: 82px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  gap: 20px;
 }
+
+/* =========================
+   LOGO
+========================= */
 
 .logo {
   display: flex;
   align-items: center;
   gap: 14px;
+
+  flex-shrink: 0;
+
   text-decoration: none;
 
   h2 {
-    .span {
-      color: #1d4ed8;
-    }
+    margin: 0;
+
     color: #111827;
+
     font-size: 28px;
     font-weight: 700;
+
+    white-space: nowrap;
+
+    span {
+      color: #1d4ed8;
+    }
   }
 }
 
 .logoIcon {
   width: 50px;
   height: 50px;
-  border-radius: 14px;
-  background: #2563eb;
+
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  span {
-    font-size: 25px;
-    color: #fff;
-  }
+
+  border-radius: 14px;
+
+  background: #2563eb;
+
+  color: #fff;
+  font-size: 25px;
 }
+
+/* =========================
+   NAV
+========================= */
 
 .nav {
   display: flex;
@@ -51,13 +77,15 @@
   gap: 10px;
 
   a {
-    text-decoration: none;
-    color: #6b7280;
-    font-weight: 600;
-    font-size: 16px;
-
     padding: 12px 20px;
+
     border-radius: 14px;
+
+    color: #6b7280;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 600;
 
     transition: all 0.25s ease;
 
@@ -71,23 +99,44 @@
 .active {
   background: #eff6ff;
   color: #2563eb !important;
+
   border: 1px solid #2563eb;
+
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
+
+/* =========================
+   ACTIONS
+========================= */
 
 .actions {
   display: flex;
   align-items: center;
   gap: 14px;
+
+  flex-shrink: 0;
+}
+
+.signIn,
+.signUp,
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition: 0.25s ease;
 }
 
 .signIn {
-  text-decoration: none;
-  color: #374151;
-  font-weight: 600;
   padding: 12px 22px;
+
   border-radius: 12px;
-  transition: 0.25s;
+
+  color: #374151;
 
   &:hover {
     background: #f3f4f6;
@@ -95,13 +144,12 @@
 }
 
 .signUp {
-  text-decoration: none;
-  background: #2563eb;
-  color: white;
   padding: 12px 24px;
+
   border-radius: 12px;
-  font-weight: 600;
-  transition: 0.25s;
+
+  background: #2563eb;
+  color: #fff;
 
   &:hover {
     background: #1d4ed8;
@@ -109,34 +157,258 @@
 }
 
 .addBtn {
-  text-decoration: none;
-  background: #2563eb;
-  color: white;
   padding: 13px 22px;
+
   border-radius: 12px;
-  font-weight: 600;
-  transition: 0.25s;
+
+  background: #2563eb;
+  color: #fff;
+
+  white-space: nowrap;
 
   &:hover {
     background: #1d4ed8;
   }
 }
 
+/* =========================
+   AVATAR
+========================= */
+
 .avatar {
   width: 46px;
   height: 46px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: block;
-  border: 2px solid #e5e7eb;
-  transition: 0.25s;
 
-  img {
-    object-fit: cover;
-  }
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  display: block;
+
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+
+  transition: 0.25s ease;
 
   &:hover {
     transform: scale(1.05);
     border-color: #2563eb;
+  }
+}
+
+/* =========================
+   MOBILE BUTTON
+========================= */
+
+.menuButton {
+  display: none;
+
+  width: 46px;
+  height: 46px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  background: #fff;
+  color: #111827;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+  }
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobileMenu {
+  display: none;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .header {
+    height: auto;
+  }
+
+  .mobileMenu {
+    position: absolute;
+    top: 82px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    background: #fff;
+
+    border-bottom: 1px solid #eef2f7;
+
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    pointer-events: none;
+
+    transition: 0.25s ease;
+  }
+
+  .mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    a {
+      padding: 14px 16px;
+
+      border-radius: 12px;
+
+      color: #374151;
+
+      text-decoration: none;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      transition: 0.2s ease;
+
+      &:hover {
+        background: #f3f4f6;
+        color: #2563eb;
+      }
+    }
+  }
+
+  .mobileActions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #eef2f7;
+
+    .signIn,
+    .signUp,
+    .addBtn {
+      width: 100%;
+      min-height: 48px;
+    }
+  }
+
+  .mobileProfile {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px;
+
+    color: #111827;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .header {
+    height: 70px;
+  }
+
+  .wrapper {
+    height: 70px;
+    gap: 12px;
+  }
+
+  .logo {
+    gap: 10px;
+
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  .logoIcon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    font-size: 22px;
+  }
+
+  .menuButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobileMenu {
+    top: 70px;
+  }
+}
+
+@media (max-width: 380px) {
+  .logo h2 {
+    font-size: 19px;
+  }
+
+  .logoIcon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 20px;
   }
 }
