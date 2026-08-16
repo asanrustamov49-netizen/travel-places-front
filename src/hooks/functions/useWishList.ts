@@ -5,10 +5,33 @@ import { IOnePlaceResult, IPlaceResult } from "../types/placesTypes";
 export interface IWishListStore {
   wishList: IPlaceResult[];
   wishListCount: number;
-  addToWishList: (body: IPlaceResult) => void;
+  addToWishList: (body: IPlaceResult | IOnePlaceResult) => void;
   removeFromWishList: (id: number) => void;
   removeAllWishList: () => void;
 }
+
+const normalizeToPlaceResult = (
+  body: IPlaceResult | IOnePlaceResult,
+): IPlaceResult => {
+  if ("image" in body) {
+    return body;
+  }
+
+  return {
+    id: body.id,
+    title: body.title,
+    description: body.description,
+    city: body.city,
+    type: body.type,
+    price: body.price,
+    rating: body.rating,
+    created_at: body.created_at,
+    country_id: body.country_id,
+    country_name: body.country_name,
+    author_name: body.author_name,
+    image: body.images[0] ?? null,
+  };
+};
 
 export const useWishList = create<IWishListStore>()(
   persist(
@@ -17,7 +40,8 @@ export const useWishList = create<IWishListStore>()(
       wishListCount: 0,
       addToWishList: (body) => {
         set((state) => {
-          const newWishList = [...state.wishList, body];
+          const normalized = normalizeToPlaceResult(body);
+          const newWishList = [...state.wishList, normalized];
           return {
             wishList: newWishList,
             wishListCount: newWishList.length,
