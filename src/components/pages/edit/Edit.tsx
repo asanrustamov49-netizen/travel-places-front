@@ -13,18 +13,6 @@ import { useGetCountries } from "@/hooks/functions/countries/useGetCountries";
 import { useGetOnePlace } from "@/hooks/functions/places/useGetOnePlace";
 
 const CATEGORIES = ["Beach", "Culture", "Adventure", "Nature", "City"];
-// const COUNTRIES = [
-//   { id: 1, name: "Italy" },
-//   { id: 2, name: "Japan" },
-//   { id: 3, name: "France" },
-//   { id: 4, name: "Greece" },
-//   { id: 5, name: "Spain" },
-//   { id: 6, name: "Turkey" },
-//   { id: 7, name: "United States" },
-//   { id: 8, name: "United Kingdom" },
-//   { id: 9, name: "Brazil" },
-//   { id: 10, name: "Kyrgyzstan" },
-// ];
 
 const Edit = () => {
   const { id } = useParams<{ id: string }>();
@@ -50,18 +38,26 @@ const Edit = () => {
   };
 
   const handleData = async (data: CreatePlaceSchema) => {
-    console.log("🔥 SUBMIT СРАБОТАЛ");
-    console.log("DATA:", data);
+    const formData = new FormData();
+
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("city", data.city);
+    formData.append("type", data.type);
+    formData.append("country_id", String(data.country_id));
+    formData.append("price", String(data.price));
+
+    photos.forEach((photo) => {
+      formData.append("images", photo);
+    });
 
     try {
-      const result = await updatePlace({ id: placeId, body: data });
-      console.log("✅ PLACE CREATED:", result);
-
+      await updatePlace({ id: placeId, body: formData});
       reset();
       setPhotos([]);
       push("/admin");
     } catch (error) {
-      console.error("❌ CREATE PLACE ERROR:", error);
+      console.error("Failed to update place:", error);
     }
   };
 
@@ -72,7 +68,6 @@ const Edit = () => {
 
   useEffect(() => {
     if (!place) return;
-
     reset({
       title: place.title,
       description: place.description,
@@ -267,9 +262,9 @@ const Edit = () => {
 
             {photos.length > 0 && (
               <div className={scss.photoList}>
-                {photos.map((file, i) => (
-                  <span key={i} className={scss.photoChip}>
-                    {file.name}
+                {photos.map((item, idx) => (
+                  <span key={idx} className={scss.photoChip}>
+                    {item.name}
                   </span>
                 ))}
               </div>

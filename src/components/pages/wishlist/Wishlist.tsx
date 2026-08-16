@@ -42,7 +42,6 @@ const Wishlist = () => {
               {wishList.map((place) => (
                 <div key={place.id} className={scss.cardWrapper}>
                   <HomeCards place={place} />
-
                   <button
                     type="button"
                     className={scss.removeBtn}

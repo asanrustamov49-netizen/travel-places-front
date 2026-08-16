@@ -12,9 +12,8 @@ import scss from "./booking.module.scss";
 
 const Booking = () => {
   const params = useParams();
-  const router = useRouter();
-  const id = Number(params.id);
-  const { data: place, isLoading: placeLoading } = useGetOnePlace(id);
+  const {push} = useRouter();
+  const { data: place, isLoading: placeLoading } = useGetOnePlace(Number(params.id));
   const createBooking = useCreateBooking();
   const {
     register,
@@ -22,12 +21,7 @@ const Booking = () => {
     watch,
     formState: { errors },
   } = useForm<BookingFormSchema>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      check_in: "",
-      check_out: "",
-      guests_count: 1,
-    },
+    resolver: zodResolver(bookingSchema)
   });
   const checkIn = watch("check_in");
   const checkOut = watch("check_out");
@@ -42,19 +36,19 @@ const Booking = () => {
     return nights > 0 ? nights : 0;
   };
   const nights = getNights();
-  const price = Number(place?.price ?? 0);
+  const price = Number(place?.price);
   const previewTotal = nights * price;
   const onSubmit = async (data: BookingFormSchema) => {
     try {
       await createBooking.mutateAsync({
-        placeId: id,
+        placeId: Number(params.id),
         data: {
           check_in: data.check_in,
           check_out: data.check_out,
           guests_count: data.guests_count,
         },
       });
-      router.push("/my-bookings");
+      push("/my-bookings");
     } catch (error) {
       console.error(error);
     }

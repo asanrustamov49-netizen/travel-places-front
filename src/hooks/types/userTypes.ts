@@ -1,4 +1,4 @@
-import { IPlaceResult } from "./placesTypes";
+import { IOnePlaceResult, IPlaceResult } from "./placesTypes";
 
 export interface INewUserBody {
   id: number;

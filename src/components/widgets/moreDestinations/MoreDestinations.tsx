@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import scss from "./moreDestinations.module.scss";
 import DetailCards from "@/components/ui/detailCards/DetailCards";
@@ -23,7 +22,6 @@ const MoreDestinations = () => {
             <h2>More Destinations</h2>
             <Link href="/#destinations">View all</Link>
           </div>
-
           <DetailCards destinations={data?.data ?? []} />
         </div>
       </div>

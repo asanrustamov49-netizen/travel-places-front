@@ -3,16 +3,17 @@ import { useGetMyBookings } from "@/hooks/functions/bookings/useGetMyBookings";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import scss from "./detailTop.module.scss";
-import { IPlaceResult } from "@/hooks/types/placesTypes";
+import { IOnePlaceResult, IPlaceResult } from "@/hooks/types/placesTypes";
 import { useWishList } from "@/hooks/functions/useWishList";
 import UserAvatar from "@/components/ui/userAvatar/UserAvatar";
 import { useRouter } from "next/navigation";
 
 interface IDetailTop {
-  place: IPlaceResult;
+  place: IOnePlaceResult;
 }
 
 const DetailTop = ({ place }: IDetailTop) => {
+  const [activeImage, setActiveImage] = useState(0);
   const { data: bookings } = useGetMyBookings();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const token =
@@ -31,26 +32,11 @@ const DetailTop = ({ place }: IDetailTop) => {
     addToWishList(place);
     setShowModal(true);
   };
-  const images = useMemo(
-    () => [
-      place.image?.image_url
-        ? `http://localhost:5000${place.image.image_url}`
-        : "/no-image.jpg",
-
-      "/login-bg.avif",
-      "/mortgage.avif",
-      "/register-bg.avif",
-    ],
-    [place.image?.image_url],
-  );
-
-  const [selectedImage, setSelectedImage] = useState(images[0]);
   const handleBookNow = () => {
     if (!token) {
       setShowAuthModal(true);
       return;
     }
-
     push(`/booking/${place.id}`);
   };
   return (
@@ -64,19 +50,29 @@ const DetailTop = ({ place }: IDetailTop) => {
         <div className={scss.mainContainer}>
           <div className={scss.leftSide}>
             <div className={scss.mainImage}>
-              <img src={selectedImage} alt={place.title} />
+              {place.images.length > 0 && (
+                <img
+                  src={`http://localhost:5000${place.images[activeImage].image_url}`}
+                  alt={place.title}
+                  width={1000}
+                  height={700}
+                />
+              )}
             </div>
             <div className={scss.gallery}>
-              {images.map((image, index) => (
+              {place.images.map((image, index) => (
                 <button
+                  key={image.id}
                   type="button"
-                  key={image}
-                  onClick={() => setSelectedImage(image)}
-                  className={
-                    selectedImage === image ? scss.activeThumbnail : ""
-                  }
+                  onClick={() => setActiveImage(index)}
+                  className={activeImage === index ? scss.activeThumbnail : ""}
                 >
-                  <img src={image} alt={`${place.title} ${index + 1}`} />
+                  <img
+                    src={`http://localhost:5000${image.image_url}`}
+                    alt={`${place.title} ${index + 1}`}
+                    width={120}
+                    height={70}
+                  />
                 </button>
               ))}
             </div>
@@ -131,7 +127,7 @@ const DetailTop = ({ place }: IDetailTop) => {
               <span className={scss.publishedLabel}>PUBLISHED BY</span>
               <div className={scss.author}>
                 <div className={scss.authorAvatar}>
-                  <UserAvatar name={place.author_name} key={place.id} />
+                  <UserAvatar name={place.author_name} />
                 </div>
                 <div>
                   <strong>{place.author_name}</strong>

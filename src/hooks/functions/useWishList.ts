@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { IPlaceResult } from "../types/placesTypes";
+import { IOnePlaceResult, IPlaceResult } from "../types/placesTypes";
 
 export interface IWishListStore {
   wishList: IPlaceResult[];

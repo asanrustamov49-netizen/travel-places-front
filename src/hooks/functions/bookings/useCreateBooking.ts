@@ -13,6 +13,7 @@ interface ICreateBookingParams {
 export const useCreateBooking = () => {
   const queryClient = useQueryClient();
   return useMutation({
+    mutationKey: ["create booking"],
     mutationFn: async ({ placeId, data }: ICreateBookingParams) => {
       const response = await bookingApi.post<IBookingResponse>(
         `/${placeId}`,

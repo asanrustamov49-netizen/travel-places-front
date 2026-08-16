@@ -15,7 +15,7 @@ const Profile = () => {
   return (
     <div>
       <MainProfile profile={data} />;
-      <ProfilePanel profile={data}/>;
+      <ProfilePanel profile={data} />;
     </div>
   );
 };

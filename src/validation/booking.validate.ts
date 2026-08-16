@@ -3,9 +3,7 @@ import { z } from "zod";
 export const bookingSchema = z
   .object({
     check_in: z.string().min(1, "Choose check-in date"),
-
     check_out: z.string().min(1, "Choose check-out date"),
-
     guests_count: z
       .number()
       .int("Guests must be an integer")
@@ -17,7 +15,6 @@ export const bookingSchema = z
       if (!data.check_in || !data.check_out) {
         return true;
       }
-
       return data.check_out > data.check_in;
     },
     {
@@ -30,9 +27,7 @@ export const bookingSchema = z
       if (!data.check_in) {
         return true;
       }
-
       const today = new Date().toISOString().split("T")[0];
-
       return data.check_in >= today;
     },
     {

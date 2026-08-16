@@ -10,9 +10,7 @@ interface HomeCardsProps {
 
 const HomeCards = ({ place }: HomeCardsProps) => {
   const description = place.description ?? "";
-
   const descriptionPreview = description.split(/\s+/).slice(0, 20).join(" ");
-
   const hasMoreDescription = description.trim().split(/\s+/).length > 20;
   return (
     <article className={scss.card}>
@@ -24,7 +22,7 @@ const HomeCards = ({ place }: HomeCardsProps) => {
               : "/no-image.jpg"
           }
           alt={place.title}
-          fill
+          fill unoptimized
           className={scss.image}
         />
         <span className={scss.type}>{place.type}</span>

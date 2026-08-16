@@ -94,7 +94,6 @@ const Register = () => {
                 <span className={scss.error}>{errors.email.message}</span>
               )}
             </div>
-            {/* PASSWORD */}
             <div className={scss.field}>
               <label htmlFor="password">Password</label>
               <input

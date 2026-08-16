@@ -1,6 +1,6 @@
 export interface IPlaceNewBody {
   id: number;
-  body: IUpdatePlaceBody;
+  body: IUpdatePlaceBody | FormData;
 }
 export interface IPlaceResponse {
   message: string;
@@ -15,7 +15,7 @@ export interface IPlaceResponse {
 
 export interface IOnePlaceResponse {
   message: string;
-  data: IPlaceResult;
+  data: IOnePlaceResult;
 }
 
 export interface ICreatePlaceBody {
@@ -43,6 +43,30 @@ export interface IPlaceFilters {
 }
 
 export type PlaceType = "Beach" | "Culture" | "Adventure" | "Nature" | "City";
+
+export interface IOnePlaceResult {
+  id: number;
+  title: string;
+  description: string;
+  city: string;
+  type: PlaceType;
+  price: number;
+  rating: number;
+  ratings_count: number;
+  created_at: string;
+  updated_at: string;
+
+  user_id: number;
+  author_name: string;
+
+  country_id: number;
+  country_name: string;
+
+  images: {
+    id: number;
+    image_url: string;
+  }[];
+}
 
 export interface IPlaceResult {
   id: number;

@@ -9,13 +9,12 @@ import { useEffect } from "react";
 
 const Admin = () => {
   const { isAuth, isReady } = useAuth();
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const { data: stats, isLoading, isError } = useGetStatistics();
 
   useEffect(() => {
-    if (isReady && !isAuth) replace("/login");
-  }, [isAuth, isReady, replace]);
-
+    if (isReady && !isAuth) push("/login");
+  }, [isAuth, isReady, push]);
   if (!isReady || !isAuth) return null;
 
   return (

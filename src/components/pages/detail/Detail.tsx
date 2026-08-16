@@ -20,7 +20,7 @@ const Detail = () => {
   return (
     <div>
       <DetailTop place={place} />
-      <DetailRating placeId={place.id} />
+      <DetailRating placeId={placeId} />
       <MoreDestinations />
     </div>
   );

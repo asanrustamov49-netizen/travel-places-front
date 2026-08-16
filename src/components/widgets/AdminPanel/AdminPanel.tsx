@@ -42,7 +42,7 @@ const AdminPanel = () => {
     sort,
   });
   const places = placesData?.data ?? [];
-  const totalPlaces = placesData?.pagination?.total ?? 0;
+  const totalPlaces = placesData?.pagination?.total;
   const placesTotalPages = placesData?.pagination?.pages ?? 1;
 
   const {
@@ -55,7 +55,7 @@ const AdminPanel = () => {
     search: search || undefined,
   });
   const users = usersData?.data ?? [];
-  const totalUsers = usersData?.pagination?.total ?? 0;
+  const totalUsers = usersData?.pagination?.total;
   const usersTotalPages = usersData?.pagination?.pages ?? 1;
 
   const totalPages =

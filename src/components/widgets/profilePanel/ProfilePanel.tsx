@@ -18,12 +18,10 @@ const ProfilePanel = ({ profile }: IProfilePanelProps) => {
             <h2>
               My Places <span>({profile.places.length})</span>
             </h2>
-
             <button onClick={() => push("/add")} className={scss.addBtn}>
               + Add Place
             </button>
           </div>
-
           <div className={scss.cards}>
             {profile.places.map((place) => (
               <HomeCards key={place.id} place={place} />

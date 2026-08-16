@@ -4,12 +4,15 @@ import scss from "./usersTable.module.scss";
 import { useDeleteUser } from "@/hooks/functions/users/useDeleteUser";
 import { useState } from "react";
 import { useUpdateUser } from "@/hooks/functions/users/useUpdateUser";
+import { useRouter } from "next/navigation";
+import UserAvatar from "@/components/ui/userAvatar/UserAvatar";
 
 interface UsersTableProps {
   users: IUserResult[];
 }
 
 const UsersTable = ({ users }: UsersTableProps) => {
+  const { push } = useRouter();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<IUserResult | null>(null);
@@ -37,6 +40,8 @@ const UsersTable = ({ users }: UsersTableProps) => {
     if (!selectedUser) return;
     deleteUser.mutate(selectedUser.id, {
       onSuccess: () => {
+        localStorage.removeItem("token");
+        push("/");
         setIsDeleteOpen(false);
         setSelectedUser(null);
       },
@@ -58,12 +63,13 @@ const UsersTable = ({ users }: UsersTableProps) => {
           </thead>
           <tbody>
             {users.map((user) => {
-              const firstLetter = user.name.charAt(0).toUpperCase();
               return (
                 <tr key={user.id}>
                   <td>
                     <div className={scss.userCell}>
-                      <div className={scss.avatar}>{firstLetter}</div>
+                      <div className={scss.avatar}>
+                        <UserAvatar name={user.name} />
+                      </div>
                       <div className={scss.userInfo}>
                         <span className={scss.name}>{user.name}</span>
                       </div>
@@ -119,7 +125,6 @@ const UsersTable = ({ users }: UsersTableProps) => {
           </div>
         )}
       </div>
-      {/* EDIT MODAL */}
       {isEditOpen && (
         <div className={scss.modalOverlay}>
           <div className={scss.modal}>
@@ -163,7 +168,6 @@ const UsersTable = ({ users }: UsersTableProps) => {
           </div>
         </div>
       )}
-      {/* DELETE MODAL */}
       {isDeleteOpen && (
         <div className={scss.modalOverlay}>
           <div className={scss.modal}>

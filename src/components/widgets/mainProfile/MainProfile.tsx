@@ -1,9 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import scss from "./mainProfile.module.scss";
-
 import { useUpdateUser } from "@/hooks/functions/users/useUpdateUser";
 import { useDeleteUser } from "@/hooks/functions/users/useDeleteUser";
 import UserAvatar from "@/components/ui/userAvatar/UserAvatar";
@@ -14,17 +12,13 @@ interface IProfile {
 }
 
 const MainProfile = ({ profile }: IProfile) => {
-  const router = useRouter();
-
+  const {push} = useRouter();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-
   const [name, setName] = useState(profile.name);
   const [email, setEmail] = useState(profile.email);
-
   const updateUser = useUpdateUser();
   const deleteUser = useDeleteUser();
-
   const handleUpdate = () => {
     updateUser.mutate(
       {
@@ -39,12 +33,11 @@ const MainProfile = ({ profile }: IProfile) => {
       },
     );
   };
-
   const handleDelete = () => {
     deleteUser.mutate(profile.id, {
       onSuccess: () => {
         localStorage.removeItem("token");
-        router.push("/");
+        push("/");
       },
     });
   };
@@ -55,7 +48,7 @@ const MainProfile = ({ profile }: IProfile) => {
         <div className={scss.mainContainer}>
           <div className={scss.profileInfo}>
             <div className={scss.avatarWrapper}>
-              <UserAvatar name={profile.name} />
+              <UserAvatar name={profile.name} size="large"/>
             </div>
 
             <div className={scss.info}>
@@ -107,8 +100,6 @@ const MainProfile = ({ profile }: IProfile) => {
           </div>
         </div>
       </div>
-
-      {/* EDIT MODAL */}
       {isEditOpen && (
         <div className={scss.modalOverlay}>
           <div className={scss.modal}>
@@ -166,8 +157,6 @@ const MainProfile = ({ profile }: IProfile) => {
           </div>
         </div>
       )}
-
-      {/* DELETE MODAL */}
       {isDeleteOpen && (
         <div className={scss.modalOverlay}>
           <div className={scss.modal}>

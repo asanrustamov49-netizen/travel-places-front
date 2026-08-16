@@ -16,14 +16,15 @@ const Header = () => {
   const { data: profile } = useProfile({
     enabled: isAuth,
   });
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
   return (
     <header className={scss.header}>
       <div className="container">
         <div className={scss.wrapper}>
-          <Link href="/" className={scss.logo} onClick={closeMenu}>
+          <Link
+            href="/"
+            className={scss.logo}
+            onClick={() => setIsMenuOpen(false)}
+          >
             <div className={scss.logoIcon}>
               <IoLocationSharp />
             </div>
@@ -83,7 +84,7 @@ const Header = () => {
             <Link
               href="/"
               className={pathname === "/" ? scss.active : ""}
-              onClick={closeMenu}
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
@@ -91,7 +92,7 @@ const Header = () => {
               <Link
                 href="/admin"
                 className={pathname.startsWith("/admin") ? scss.active : ""}
-                onClick={closeMenu}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Admin
               </Link>
@@ -100,13 +101,17 @@ const Header = () => {
           <div className={scss.mobileActions}>
             {isAuth ? (
               <>
-                <Link href="/add" className={scss.addBtn} onClick={closeMenu}>
+                <Link
+                  href="/add"
+                  className={scss.addBtn}
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   + Add Place
                 </Link>
                 <Link
                   href="/profile"
                   className={scss.mobileProfile}
-                  onClick={closeMenu}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <div className={scss.avatar}>
                     {profile && <UserAvatar name={profile.name} />}
@@ -116,13 +121,17 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link href="/login" className={scss.signIn} onClick={closeMenu}>
+                <Link
+                  href="/login"
+                  className={scss.signIn}
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
                   className={scss.signUp}
-                  onClick={closeMenu}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up
                 </Link>

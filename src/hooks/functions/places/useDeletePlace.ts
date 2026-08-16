@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { placeApi } from "@/hooks/api/placesApi";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeletePlace = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["delete place"],
     mutationFn: async (id: number) => {

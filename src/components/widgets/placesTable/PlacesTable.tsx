@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import scss from "./placesTable.module.scss";
@@ -24,15 +23,11 @@ const categoryClass: Record<
 
 const PlacesTable = ({ places }: PlacesTableProps) => {
   const { push } = useRouter();
-
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<IPlaceResult | null>(null);
-
   const deletePlace = useDeletePlace();
-
   const handleDelete = () => {
     if (!selectedPlace) return;
-
     deletePlace.mutate(selectedPlace.id, {
       onSuccess: () => {
         setIsDeleteOpen(false);
@@ -68,6 +63,7 @@ const PlacesTable = ({ places }: PlacesTableProps) => {
                           src={`http://localhost:5000${place.image.image_url}`}
                           alt={place.title}
                           fill
+                          unoptimized
                           className={scss.image}
                         />
                       ) : (
