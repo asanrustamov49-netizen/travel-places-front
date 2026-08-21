@@ -18,11 +18,12 @@ const HomeCards = ({ place }: HomeCardsProps) => {
         <Image
           src={
             place.image?.image_url
-              ? `http://localhost:5000${place.image.image_url}`
+              ? `https://travel-places-backend.onrender.com${place.image.image_url}`
               : "/no-image.jpg"
           }
           alt={place.title}
-          fill unoptimized
+          fill
+          unoptimized
           className={scss.image}
         />
         <span className={scss.type}>{place.type}</span>
@@ -45,10 +46,10 @@ const HomeCards = ({ place }: HomeCardsProps) => {
             {place.country_name}, {place.city}
           </span>
         </div>
-          <p>
-            {descriptionPreview}
-            {hasMoreDescription && "..."}
-          </p>
+        <p>
+          {descriptionPreview}
+          {hasMoreDescription && "..."}
+        </p>
         <Link href={`/detail/${place.id}`} className={scss.button}>
           View Details
         </Link>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const ratingApi = axios.create({
-  baseURL: "http://localhost:5000/ratings",
+  baseURL: "https://travel-places-backend.onrender.com/ratings",
 });
 
 ratingApi.interceptors.request.use((config) => {

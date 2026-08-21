@@ -60,7 +60,7 @@ const PlacesTable = ({ places }: PlacesTableProps) => {
                     <div className={scss.imageWrapper}>
                       {place.image ? (
                         <Image
-                          src={`http://localhost:5000${place.image.image_url}`}
+                          src={`https://travel-places-backend.onrender.com${place.image.image_url}`}
                           alt={place.title}
                           fill
                           unoptimized

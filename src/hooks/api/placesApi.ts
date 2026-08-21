@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const placeApi = axios.create({
-  baseURL: "http://localhost:5000/places",
+  baseURL: "https://travel-places-backend.onrender.com/places",
 });
 
 placeApi.interceptors.request.use((config) => {

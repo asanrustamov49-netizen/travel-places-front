@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const authApi = axios.create({
-  baseURL: "http://localhost:5000/auth",
+  baseURL: "https://travel-places-backend.onrender.com/auth",
 });
 
 authApi.interceptors.request.use((config) => {

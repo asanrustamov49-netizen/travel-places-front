@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const bookingApi = axios.create({
-  baseURL: "http://localhost:5000/bookings",
+  baseURL: "https://travel-places-backend.onrender.com/bookings",
 });
 
 bookingApi.interceptors.request.use((config) => {

@@ -19,7 +19,7 @@ const DetailCards = ({ destinations }: IDetailCards) => {
             <img
               src={
                 destination.image?.image_url
-                  ? `http://localhost:5000${destination.image.image_url}`
+                  ? `https://travel-places-backend.onrender.com${destination.image.image_url}`
                   : "/no-image.jpg"
               }
               alt={destination.title}

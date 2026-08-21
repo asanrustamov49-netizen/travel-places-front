@@ -52,7 +52,7 @@ const DetailTop = ({ place }: IDetailTop) => {
             <div className={scss.mainImage}>
               {place.images.length > 0 && (
                 <img
-                  src={`http://localhost:5000${place.images[activeImage].image_url}`}
+                  src={`https://travel-places-backend.onrender.com${place.images[activeImage].image_url}`}
                   alt={place.title}
                   width={1000}
                   height={700}
@@ -68,7 +68,7 @@ const DetailTop = ({ place }: IDetailTop) => {
                   className={activeImage === index ? scss.activeThumbnail : ""}
                 >
                   <img
-                    src={`http://localhost:5000${image.image_url}`}
+                    src={`https://travel-places-backend.onrender.com${image.image_url}`}
                     alt={`${place.title} ${index + 1}`}
                     width={120}
                     height={70}

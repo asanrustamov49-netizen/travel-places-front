@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const statisticsApi = axios.create({
-  baseURL: "http://localhost:5000/admin",
+  baseURL: "https://travel-places-backend.onrender.com/admin",
 });
 
 statisticsApi.interceptors.request.use((config) => {
